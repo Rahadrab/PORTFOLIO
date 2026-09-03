@@ -1,33 +1,66 @@
-# Case Study 2 — Search-Query Injection: ACL Bypass + User Enumeration on a Hospital Search Portal
+# Case Study 2 — Search Injection → ACL Bypass + Health Data Exposure
 
-**Finding class:** CWE-200 (Exposure of Sensitive Information) / CWE-284 (Improper Access Control) · GDPR Art. 9 (health data)
-**Vulnerable surface:** public search endpoint of a national hospital group's CMS portal
+| Field | Value |
+|-------|-------|
+| **Severity** | P2 |
+| **CWE** | CWE-200 (Exposure of Sensitive Information) / CWE-284 (Improper Access Control) |
+| **Impact** | GDPR Art. 9 — health data exposure (penalty ceiling €20M / 4% global turnover) |
+| **Surface** | Public search endpoint of a national hospital group's CMS portal |
+| **Status** | Packaged — evidence package delivered |
 
 ---
 
-## 1. Problem
+## Problem
 
-A hospital group's public website search was backed by a full-text search engine (Lucene/Elasticsearch). The public UI exposed only the guest site scope, but the search endpoint itself accepted raw query-operator syntax — and a WAF was filtering obvious injection attempts.
+A hospital group's public website search was backed by Lucene/Elasticsearch. The public UI showed only the guest scope, but the search endpoint accepted raw query-operator syntax. A WAF filtered obvious injection attempts.
 
-## 2. Approach
+**5,940 internal documents were exposed** — including pediatric psychiatry pages, surgical cost PDFs, mortuary forms, and supplier terms.
 
-Three steps, each building on the last:
+## Attack Chain
 
-1. **WAF bypass.** `AND`/`OR` keyword queries returned 403, but two variants passed clean: query-comment syntax (`AND //`, `AND /**/`) and switching from POST to GET (the WAF didn't filter GET). Once through, all special query operators became usable.
-2. **ACL bypass via scope parameter.** The endpoint accepted an explicit scope identifier. Passing the global scope (`scopeGroupId:0`) instead of the guest scope returned the **entire CMS index** — 5,940 results for a keyword that returned 5 in the public scope, including internal clinical and administrative documents: pediatric psychiatry clinic pages, surgical cost-estimate PDFs, mortuary administrative forms, governing-board documents, supplier terms.
-3. **User enumeration via field syntax.** Field queries (`username:*` vs `firstName:*`, `emailAddress:*`) showed the `username` field of user entities was indexed and anonymously queryable — the narrowest enumerable user attribute.
+```
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
+│  WAF Bypass      │────▶│  Scope Bypass     │────▶│  Field          │
+│  Comment syntax  │     │  scopeGroupId:0   │     │  Enumeration    │
+│  + GET method    │     │  → Global index   │     │  username:*     │
+└─────────────────┘     └──────────────────┘     └─────────────────┘
+```
 
-Every step was verified by capturing full HTTP response bodies, comparing scoped vs global result sets, and scripting the proof chain.
+## Approach — Three Steps
 
-## 3. Result
+### Step 1: WAF Bypass
+- `AND`/`OR` keyword queries → 403 (blocked)
+- **Two variants passed clean:**
+  - Query-comment syntax: `AND //`, `AND /**/`
+  - Method switching: POST → GET (WAF didn't filter GET)
+- Once through, all special query operators became usable
 
-- **Anonymous read of permission-gated internal hospital documents** — health-related content (child psychiatry, treatment cost documents) on a public endpoint = GDPR Art. 9 exposure (penalty ceiling €20M / 4% of global turnover).
-- **User-field enumeration** on the indexed user store.
-- Delivered a report with a consolidated evidence package (WAF-bypass recap, scoped-vs-global comparison, field-query proof) and remediation: server-side scope enforcement, field-allowlist on the query parser, WAF coverage of GET + comment syntax.
+### Step 2: ACL Bypass via Scope Parameter
+- Endpoint accepted an explicit scope identifier
+- Passing the global scope (`scopeGroupId:0`) instead of guest scope returned the **entire CMS index**
+- **5,940 results** for a keyword that returned 5 in public scope
+- Internal documents exposed: clinical pages, surgical PDFs, mortuary forms, governing-board docs, supplier terms
 
-## 4. Method note
+### Step 3: User Enumeration via Field Syntax
+- Field queries (`username:*`, `firstName:*`, `emailAddress:*`) showed the `username` field was indexed and anonymously queryable
+- Narrowest enumerable user attribute — full user-field enumeration possible
 
-Injection probes, response-body capture, and diff/compare scripts developed through AI-assisted generation; I designed the bypass chain, reviewed each request, and validated every result against raw response captures before writing the report.
+## Results
+
+- **Anonymous read of permission-gated internal hospital documents**
+- Health-related content (child psychiatry, treatment costs) on a public endpoint = **GDPR Art. 9 exposure**
+- User-field enumeration on indexed user store
+- Full evidence package: WAF-bypass recap, scoped-vs-global comparison, field-query proof
+
+## Remediation Delivered
+
+- Server-side scope enforcement (never trust client-supplied scope)
+- Field-allowlist on query parser (only index public fields)
+- WAF coverage for GET requests + comment syntax
+
+## Tooling
+
+Injection probes, response-body capture, diff/compare scripts — developed through AI-assisted generation. I designed the bypass chain, reviewed each request, and validated every result against raw response captures.
 
 ---
 

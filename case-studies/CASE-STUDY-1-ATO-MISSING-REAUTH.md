@@ -1,39 +1,78 @@
-# Case Study 1 — Account Takeover via Missing Re-Authentication on Credential Change
+# Case Study 1 — Account Takeover via Missing Re-Authentication
 
-**Finding class:** CWE-306 (Missing Authentication for Critical Function) / CWE-620 (Unverified Password Change) · OWASP A07:2021
-**Severity:** High
-**Vulnerable surface:** customer identity stack (OIDC-based) of a Tier-1 European media platform, millions of accounts
+| Field | Value |
+|-------|-------|
+| **Severity** | High |
+| **CWE** | CWE-306 (Missing Authentication) / CWE-620 (Unverified Password Change) |
+| **OWASP** | A07:2021 — Identification and Authentication Failures |
+| **Surface** | OIDC-based identity stack, millions of accounts |
+| **Status** | Packaged — full evidence package delivered |
 
 ---
 
-## 1. Problem
+## Problem
 
-A subscription media platform let users change their **password and email address with only a valid session cookie** — no current password, no re-authentication, and (for email) no verification step. Any holder of a session identifier — a leaked session cookie, a session on a shared device, or a session exfiltrated through any other flaw — could silently and irreversibly take over the account.
+A subscription platform let users change their **password and email address with only a valid session cookie** — no current password, no re-authentication, and (for email) no verification step.
 
-## 2. Approach
+Any holder of a session identifier could silently and irreversibly take over the account.
 
-I mapped the full identity flow and found **two independent API surfaces** with the same control gap:
-
-1. **Identity settings API** — password change and email (`traits.email`) change accepted with only the session cookie plus the session-owned double-submit CSRF token (which proves "I hold a session," not "I am the user").
-2. **GraphQL profile mutation** — an email-change mutation protected only by an `Origin` header check and session cookies; no CSRF token at all.
-
-The key insight: the CSRF token is owned by the same session the re-authentication step is supposed to gate, so it adds nothing. I then completed the takeover chain via the **public unauthenticated password-recovery flow**:
+## Attack Chain
 
 ```
-session cookie (no password) → change email → recovery code sent to attacker inbox → set new password → login as victim
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
+│  Obtain session  │────▶│  Change email to  │────▶│  Trigger public │
+│  cookie (any     │     │  attacker-controlled│    │  password       │
+│  method)         │     │  address          │     │  recovery       │
+└─────────────────┘     └──────────────────┘     └────────┬────────┘
+                                                           │
+                                                           ▼
+                                                ┌─────────────────┐
+                                                │  Recovery code  │
+                                                │  sent to        │
+                                                │  attacker inbox │
+                                                └────────┬────────┘
+                                                           │
+                                                           ▼
+                                                ┌─────────────────┐
+                                                │  Set new         │
+                                                │  password        │
+                                                │  → Full ATO      │
+                                                └─────────────────┘
 ```
 
-All testing was done on my own registered test accounts; no victim, no production account, no MITM. The reproduction was pure ordinary HTTPS requests — exactly what a victim's browser sends on every page interaction.
+## Approach
 
-## 3. Result
+Found **two independent API surfaces** with the same control gap:
 
-- **Full account takeover** of any account by a session-cookie holder — permanent lockout of the legitimate user included.
-- Demonstrated across both surfaces with scripted PoC chains and a full evidence package (screen recording + screenshots).
-- Delivered remediation: enforce `requirereauthentication` on credential-change flows, verify email changes at old and new addresses, require re-auth server-side on the GraphQL mutation, tighten the CORS-with-credentials allowlist.
+**Surface 1 — Identity Settings API**
+- Password change and email (`traits.email`) change accepted with only the session cookie + session-owned double-submit CSRF token
+- The CSRF token proves "I hold a session," not "I am the user" — it gates nothing
 
-## 4. Method note
+**Surface 2 — GraphQL Profile Mutation**
+- Email-change mutation protected only by an `Origin` header check + session cookies
+- No CSRF token at all
 
-Tooling (session capture, CSRF flow scripts, recovery-trigger and login-verification scripts) developed through AI-assisted generation; I architect the attack chain, review every request, and validate each result end-to-end against test accounts before packaging evidence.
+**Key Insight:** The CSRF token is owned by the same session the re-authentication step is supposed to gate, so it adds zero security.
+
+**All testing done on my own registered test accounts. No victim, no production account, no MITM.**
+
+## Results
+
+- **Full account takeover** of any account by a session-cookie holder
+- Permanent lockout of legitimate user included
+- Demonstrated across both surfaces with scripted PoC chains
+- Full evidence package: screen recording + screenshots + HTTP request/response pairs
+
+## Remediation Delivered
+
+- Enforce `requirereauthentication` on credential-change flows
+- Verify email changes at old AND new addresses
+- Require re-auth server-side on GraphQL mutations
+- Tighten CORS-with-credentials allowlist
+
+## Tooling
+
+Session capture, CSRF flow scripts, recovery-trigger scripts, login-verification scripts — all developed through AI-assisted generation. I architect the attack chain, review every request, and validate each result end-to-end.
 
 ---
 

@@ -6,7 +6,7 @@ Built from the real WORK archive assessment (`SKILLS-ASSESSMENT.md`). Every line
 
 ## 1. CV bullet block (paste at top of Experience/Projects — replaces the old block)
 
-> **Offensive Security Researcher / Bug Bounty — 2+ years (Intigriti `rahadrab`, Bugcrowd `rahat_rab`)**
+> **Offensive Security Researcher / Bug Bounty — 2+ years (Intigriti [`rahadrab`](https://app.intigriti.com/researcher/profile/rahadrab/), Bugcrowd [`rahat_rab`](https://bugcrowd.com/h/rahat_rab))**
 > - **Auth & session logic:** Identified missing re-authentication on credential change (password + email) across two independent API surfaces (OIDC identity stack + GraphQL) and chained it to full account takeover via the public recovery flow; built scripted PoC chains and delivered a screen-recorded evidence package. (High, packaged)
 > - **SAML/SSO:** Audited SAML 2.0 implementations across enterprise IdPs (Azure AD, Okta, ADFS, Shibboleth, CyberArk) — AuthnRequest hygiene, ACS signature enforcement, static-nonce analysis, RelayState handling; tested 25+ federation endpoints and reported clean negatives where controls held.
 > - **Access control:** Bypassed application-level ACL scoping via search-query injection (Lucene/Elasticsearch), exposing permission-gated internal documents including health-related data; enumerated indexed user fields. (GDPR Art. 9 impact framing)
