@@ -1,0 +1,7 @@
+Public artifact,Finding type,Severity/status,Roles it supports,Notes
+case-studies/CASE-STUDY-1-ATO-MISSING-REAUTH.md,Account takeover via missing re-authentication on credential change (CWE-306/620),High - packaged with PoC chain,Identity/AppSec pentester, red team, analyst,"Two independent surfaces; full takeover via public recovery flow; sanitized"
+case-studies/CASE-STUDY-2-SEARCH-INJECTION-ACL-BYPASS.md,Search-query injection - ACL bypass + user enumeration (sensitive/health data),High-impact disclosure (GDPR Art. 9 framing),Web pentester / AppSec,"WAF bypass + scope escalation + field enumeration; sanitized"
+case-studies/CASE-STUDY-3-KNOWN-CVE-EOL-TRAVERSAL.md,Known-CVE verification - unauthenticated path traversal CVE-2021-43264 on EOL platform,P3 / CVSS 6.5-7.5,Triage / analyst / junior roles,"Relative + absolute PoC; honest impact framing; sanitized"
+CV-BULLETS-HEADLINE.md,CV bullet block + LinkedIn headline v3 + PoC attachment map,Public-facing text,All applications,No program names; claims verifiable on researcher profiles
+README.md,Kit index + safety rules,Public-facing,All applications,No program names
+(PRIVATE/PORTFOLIO-INVENTORY.csv),Full 20-artifact inventory with program names and report IDs,PRIVATE - never upload,Internal lookup only,Contains live report ID + real hostnames
