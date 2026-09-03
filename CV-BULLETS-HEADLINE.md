@@ -17,7 +17,7 @@ Built from the real WORK archive assessment (`SKILLS-ASSESSMENT.md`). Every line
 
 ## 2. LinkedIn headline v3 (evidence-backed, fits 220 chars)
 
-> Offensive Security Researcher (CEH) | Auth/SAML/SSO, WAF Bypass, ACL Escalation | Accepted P2–Critical on Intigriti · Bugcrowd | AI-Directed PoC Automation | 100% Remote · Any Timezone
+> Offensive Security Researcher (CEH — [A52W25045098](https://admission.arenawebsecurity.net/)) | Auth/SAML/SSO, WAF Bypass, ACL Escalation | Accepted P2–Critical on Intigriti · Bugcrowd | AI-Directed PoC Automation | 100% Remote · Any Timezone
 
 *(v3 replaces v2: leads with the now file-backed skill areas instead of the JWT/XSS names.)*
 

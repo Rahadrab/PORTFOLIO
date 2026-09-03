@@ -1,6 +1,6 @@
 # Rahadrab — Offensive Security Researcher
 
-**CEH | 2+ Years Bug Bounty | Intigriti & Bugcrowd | 100% Remote**
+**CEH (Verified: [A52W25045098](https://admission.arenawebsecurity.net/)) | 2+ Years Bug Bounty | Intigriti & Bugcrowd | 100% Remote**
 
 ---
 
