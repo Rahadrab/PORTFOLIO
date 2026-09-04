@@ -150,6 +150,49 @@ The "we cannot confirm" framing shifts the burden of proof from the program (who
 | **3** | "Without evidence... rendered unsanitized in the actual admin panel, we cannot confirm practical risk" | **Impossible evidence requirement** — only the program can verify the admin panel; this is inverted risk |
 | **4** | *(empty)* | **Triage response incomplete** — ran out of substantive points |
 
+### Follow-up Wrong Ask — Second Round of Requests (After Empty Point 4)
+
+After the 4-point message closed with an empty 4th point, the triage team came back with **additional wrong asks** — escalating the impossible evidence requirements even further:
+
+> *"Could you please provide additional proof of concept showing:*
+> *1. The XSS payload executing in a browser context (either screenshot or video POC)*
+> *2. Evidence of the payload firing when viewing the stored submission in the admin interface"*
+
+**Why This Second Round of Asks Is Also Wrong:**
+
+**❌ Ask 1: "XSS payload executing in a browser context (screenshot or video POC)"**
+
+This request asks the reporter to capture the XSS payload actually executing in a real browser. But:
+- The reporter already submitted a working exploit script (`DISCORD_XSS_ATTACK.sh`) that demonstrates the XSS payload firing with Discord webhook callbacks proving execution
+- A video POC of XSS execution in production would require either self-XSS (pointless and detectable) or unauthorized access to a victim account (illegal)
+- The reporter already provided `finnal-xss-validation.mp4` as video proof
+- **Standard methodology**: simulated/lab environments with callback receivers (Discord webhooks, request bins) are the **accepted way** to prove XSS execution without harming real users
+
+**❌ Ask 2: "Evidence of the payload firing when viewing the stored submission in the admin interface"**
+
+This is a **repeat** of the impossible evidence standard from Points 2-3 — it requires the reporter to have admin access to view the stored submission in the admin interface. This is the same policy violation the HackerOne AI already flagged.
+
+**Pattern Recognition — The "Moving Goalposts" Tactic:**
+
+The triage team used a **moving goalposts** pattern:
+1. **Round 1** (4 points): Admit vuln exists, then ask for impossible admin access
+2. **Round 2** (2 more asks): Ask for XSS execution video + admin interface evidence
+3. **After each request is met**: Move to a new impossible requirement
+4. **Final closure**: Based on accumulated impossible asks, not on technical rebuttal
+
+This is a documented bad-faith triage pattern. The HackerOne AI confirmed the grievance; the support ticket is the proper escalation channel. Mediation precedent (Uber, Twitter, Revive) shows this pattern is reversible when properly documented.
+
+**Reporter's Response to Round 2:**
+
+The reporter already provided:
+- ✅ Video proof (`finnal-xss-validation.mp4`) — XSS execution captured
+- ✅ Working exploit script (`DISCORD_XSS_ATTACK.sh`) — 11 KB, fully functional
+- ✅ Discord webhook callbacks (`xss_callbacks.log`) — proving XSS execution flow
+- ✅ Multiple payload variants — cookie stealer, keylogger, beacon API, `<svg/onload>`
+- ✅ WordPress recreation (lab environment) — the "simulated POCs" they dismissed
+
+The triage team's Round 2 asks were already addressed in Round 1's evidence package. The follow-up requests were a re-framing of the same impossible standards.
+
 ### Why These 4 Points Are Wrong Asks
 
 The 4-point message is the smoking gun for the triage dispute:
