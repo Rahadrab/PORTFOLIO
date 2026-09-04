@@ -147,5 +147,5 @@ Response-body capture, diff/compare scripts, gobuster directory enumeration, JSO
 
 ---
 
-*Sanitized: target website name and specific URL paths removed. Full technical report available on request under NDA. Report submitted to HackerOne [REDACTED-REPORT-ID], closed as Informative by analyst [REDACTED-ANALYST] on 2026-03-18.*
+*Sanitized: target website name and specific URL paths removed. Full technical report available on request under NDA. Report submitted to [REDACTED-REPORT-ID], closed as Informative by analyst [REDACTED-ANALYST] on 2026-03-18.*
 

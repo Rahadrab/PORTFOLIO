@@ -13,11 +13,11 @@
 | **P2** | WAF Bypass + reCAPTCHA v3 Bypass (4-route cross-product) | WAF Evasion |
 | **P3** | CVE-2021-43264 — Unauthenticated Path Traversal (EOL Platform) | CWE-22 |
 | **Clean** | SAML 2.0 Audit across 5 enterprise IdPs (25+ federation endpoints) | SAML/SSO |
-| **P2** | Segment API Keys Exposed → Analytics Injection ([REDACTED-REPORT-ID] — RESOLVED) | CWE-200 / CWE-538 |
-| **P2** | WordPress REST API Public Exposure ([REDACTED-REPORT-ID] — Informative) | CWE-200 / CWE-284 |
-| **P2** | postMessage Wildcard Origin → Session Token Leak ([REDACTED-REPORT-ID] — Duplicate) | CWE-201 / CWE-942 |
-| **P2** | Stored XSS via Calculator API → Admin ATO ([REDACTED-REPORT-ID] — Triaged) | CWE-79 / CWE-352 |
-| **P2** | Drupal Installer + JSON:API Enumeration ([REDACTED-DOMAIN] — RESOLVED) | CWE-200 / CWE-284 |
+| **P2** | Segment API Keys Exposed → Analytics Injection | CWE-200 / CWE-538 |
+| **P2** | WordPress REST API Public Exposure | CWE-200 / CWE-284 |
+| **P2** | postMessage Wildcard Origin → Session Token Leak | CWE-201 / CWE-942 |
+| **P2** | Stored XSS via Calculator API → Admin ATO | CWE-79 / CWE-352 |
+| **P2** | Drupal Installer + JSON:API Enumeration | CWE-200 / CWE-284 |
 
 > All findings delivered as structured evidence packages: root cause, sanitized reproduction, PoC, impact, remediation. Full technical reports available on request under NDA. Bug bounty reports available in [`reports/`](reports/) directory.
 
@@ -94,19 +94,19 @@ Lucene/Elasticsearch injection bypassing WAF + scope controls. Exposed 5,940 int
 Verified unauthenticated arbitrary `.html` file read on EOL university platform. Version-confirmed vulnerable, relative + absolute PoC chains.
 
 ### [Case Study 4 — Segment API Keys Exposed](case-studies/CASE-STUDY-4-SEGMENT-KEYS-EXPOSED.md)
-Two Segment Write Keys exposed in client-side JavaScript, both tested with `{"success": true}` API responses. Enables fake analytics injection and data corruption. HackerOne [REDACTED-REPORT-ID].
+Two Segment Write Keys exposed in client-side JavaScript, both tested with `{"success": true}` API responses. Enables fake analytics injection and data corruption.
 
 ### [Case Study 5 — WordPress REST API Exposed](case-studies/CASE-STUDY-5-WORDPRESS-REST-API.md)
-Unauthenticated `/wp-json/` endpoint exposure on production subdomain. Confirmed via [REDACTED-VENDOR] Labs (HackerOne [REDACTED-REPORT-ID]); same data publicly available via website so closed Informative.
+Unauthenticated `/wp-json/` endpoint exposure on production subdomain. Same data publicly available via website so closed Informative.
 
 ### [Case Study 6 — postMessage Wildcard Origin](case-studies/CASE-STUDY-6-POSTMESSAGE-WILDCARD.md)
-[REDACTED-VENDOR] Labs enforcement iframe uses `postMessage()` with wildcard origin (`*`), exposing session tokens to any embedding website. 8 calls identified, all leak `sessionToken:e.token`. HackerOne [REDACTED-REPORT-ID] (Duplicate of #3481192).
+Enforcement iframe uses `postMessage()` with wildcard origin (`*`), exposing session tokens to any embedding website. 8 calls identified, all leak `sessionToken:e.token`. Closed as Duplicate.
 
-### [Case Study 7 — [REDACTED-DOMAIN] Drupal + JSON:API](case-studies/CASE-STUDY-7-1800RESPECT-DRUPAL-JSON.md)
-[REDACTED-CUSTOMER] VDP — Drupal Installer Exposure (P3→P2) + JSON:API User Enumeration. Customer restricted leaked information. Bugcrowd RESOLVED.
+### [Case Study 7 — Drupal + JSON:API Enumeration](case-studies/CASE-STUDY-7-DRUPAL-JSON-ENUMERATION.md)
+VDP — Drupal Installer Exposure (P3→P2) + JSON:API User Enumeration. Customer restricted leaked information. RESOLVED.
 
 ### [Case Study 8 — Stored XSS via Calculator API → Admin ATO](case-studies/CASE-STUDY-8-STORED-XSS-CALCULATOR-API.md)
-P2 Critical (CVSS ~9.8). Stored XSS in calculator API endpoint persisted in database, executed on admin pages, enabling full admin account takeover. HackerOne [REDACTED-REPORT-ID] — Finding validated by technical merits, triage closure impacted by new-account status. 27+ evidence files including video proof.
+P2 Critical (CVSS ~9.8). Stored XSS in calculator API endpoint persisted in database, executed on admin pages, enabling full admin account takeover. Finding validated by technical merits, triage closure impacted by new-account status. 27+ evidence files including video proof.
 
 ---
 

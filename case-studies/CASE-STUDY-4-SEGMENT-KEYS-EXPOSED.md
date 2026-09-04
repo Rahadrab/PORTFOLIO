@@ -44,14 +44,14 @@ Both keys were tested against Segment's public API endpoints:
 curl -X POST "https://api.segment.io/v1/identify" \
   -u "[REDACTED-KEY-1]:" \
   -H "Content-Type: application/json" \
-  -d '{"userId":"HACKERONE-TEST","traits":{"email":"test@test.com","role":"admin"}}'
+  -d '{"userId":"REDACTED-TEST","traits":{"email":"test@test.com","role":"admin"}}'
 # Response: {"success": true}
 
 # Test Key #2 with Track endpoint
 curl -X POST "https://api.segment.io/v1/track" \
   -u "[REDACTED-KEY-2]:" \
   -H "Content-Type: application/json" \
-  -d '{"event":"Test Event","userId":"HACKERONE-TEST","properties":{"test":true}}'
+  -d '{"event":"Test Event","userId":"REDACTED-TEST","properties":{"test":true}}'
 # Response: {"success": true}
 ```
 
@@ -112,5 +112,5 @@ Injection probes, API test scripts, response-body capture, diff/compare scripts 
 
 ---
 
-*Sanitized: organization name, subdomain names, and specific key values removed. Full technical report available on request under NDA. Report submitted to HackerOne [REDACTED-REPORT-ID], validated by analyst [REDACTED-ANALYST], status: RESOLVED/APPROVED.*
+*Sanitized: organization name, subdomain names, and specific key values removed. Full technical report available on request under NDA. Report submitted to [REDACTED-REPORT-ID], validated by analyst [REDACTED-ANALYST], status: RESOLVED/APPROVED.*
 

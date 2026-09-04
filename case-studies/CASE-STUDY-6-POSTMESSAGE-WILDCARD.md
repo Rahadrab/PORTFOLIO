@@ -6,7 +6,7 @@
 | **CWE** | CWE-200 (Exposure of Sensitive Information to Unauthorized Actor) / CWE-359 (Improper Input Validation) |
 | **Impact** | Session token leakage, session hijacking, fraud bypass, automated bot attacks; all customers of the affected product affected |
 | **Surface** | JavaScript enforcement iframe using `postMessage()` with wildcard origin `"*"` |
-| **Status** | Packaged — triaged and closed as Duplicate of #3481192 (originally reported 2025-12-29); finding validated but duplicate; analyst was courteous and included findings excerpt for transparency |
+| **Status** | Packaged — triaged and closed as Duplicate of [REDACTED-REPORT-ID] (originally reported 2025-12-29); finding validated but duplicate; analyst was courteous and included findings excerpt for transparency |
 
 ---
 
@@ -22,7 +22,7 @@ A digital friction/protection product's enforcement iframe used `postMessage()` 
 
 ```
 ┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│  Victim Website │────▶│  [REDACTED-VENDOR] iframe   │────▶│  Attacker Website│
+│  Victim Website │────▶│  [REDACTED-COMPANY] iframe   │────▶│  Attacker Website│
 │  Loads iframe   │     │  loads challenge │     │  captures tokens │
 └─────────────────┘     └──────────────────┘     └─────────────────┘
 ```
@@ -50,7 +50,7 @@ onCompleted:function(e){
 
 1. Attacker creates a malicious website
 2. Victim visits the attacker's website (or the iframe loads invisibly)
-3. [REDACTED-VENDOR] challenge loads (visible or invisible)
+3. [REDACTED-COMPANY] challenge loads (visible or invisible)
 4. Challenge completes/fails/shown
 5. Session token sent to attacker's website via `postMessage("*")`
 6. Attacker now has valid session token
@@ -62,7 +62,7 @@ onCompleted:function(e){
 
 ### Step 1: iframe Source Analysis
 
-Downloaded the [REDACTED-VENDOR] Labs enforcement iframe source code via `curl -sL`. Used `grep` to identify all `postMessage` calls and verify they all used the wildcard origin `"*"`.
+Downloaded the [REDACTED-COMPANY] enforcement iframe source code via `curl -sL`. Used `grep` to identify all `postMessage` calls and verify they all used the wildcard origin `"*"`.
 
 ### Step 2: Token Leakage Verification
 
@@ -71,7 +71,7 @@ Analyzed the `postMessage` payload structure to confirm session tokens (`session
 ### Step 3: Impact Assessment
 
 - **Session token leakage** enables session hijacking, fraud bypass, and automated bot attacks
-- **All customers affected** — this is [REDACTED-VENDOR]'s core fraud prevention product; every customer (financial institutions, e-commerce, gaming) is impacted
+- **All customers affected** — this is [REDACTED-COMPANY]'s core fraud prevention product; every customer (financial institutions, e-commerce, gaming) is impacted
 - **GDPR/CCPA compliance risks** from session tracking by third parties without proper origin validation
 - **Automated attacks become possible** — the vulnerability lowers the barrier for bot-driven fraud
 
@@ -81,13 +81,13 @@ Analyzed the `postMessage` payload structure to confirm session tokens (`session
 
 - **8 `postMessage` calls identified**, all using wildcard origin `"*"`
 - **6 of 8 calls exposed session tokens** in payload to any origin
-- **All [REDACTED-VENDOR] Labs customers impacted** — this is the core fraud prevention product
+- **All [REDACTED-COMPANY] customers impacted** — this is the core fraud prevention product
 - **Fraud prevention bypassed** — attackers can bypass protection programmatically
 - **Session hijacking possible** — stolen tokens can potentially be reused
 - **Automated bot attacks become possible** — barrier for bot-driven fraud lowered
 - **GDPR/CCPA compliance risks** from session tracking without proper origin validation
 
-**CVSS:** 5.3 (Medium) — Information exposure with demonstrable impact, but closed as Duplicate of #3481192 (reported 2025-12-29).
+**CVSS:** 5.3 (Medium) — Information exposure with demonstrable impact, but closed as Duplicate of [REDACTED-REPORT-ID] (reported 2025-12-29).
 
 **Analyst note:** [REDACTED-ANALYST] (2026-03-19): "Thank you for your report! I appreciate the time you invested in researching this issue and submitting it to us. Unfortunately, this was submitted previously by another researcher." Excerpt from original report included for transparency.
 
@@ -102,7 +102,7 @@ Analyzed the `postMessage` payload structure to confirm session tokens (`session
 - **Security headers:** Add `Content-Security-Policy` restrictions related to iframe embedding
 - **Monitor for exposure:** Set up alerts for `postMessage` events received from unexpected origins
 
-**Note:** Finding was validated as a real vulnerability but closed as Duplicate of #3481192 (originally reported 2025-12-29 by another researcher). The analyst was courteous and included an excerpt from the original report for transparency: "All the best for your next find! Look forward to your next awesome bug report!"
+**Note:** Finding was validated as a real vulnerability but closed as Duplicate of [REDACTED-REPORT-ID] (originally reported 2025-12-29 by another researcher). The analyst was courteous and included an excerpt from the original report for transparency: "All the best for your next find! Look forward to your next awesome bug report!"
 
 ---
 
@@ -112,5 +112,5 @@ iframe source download scripts, `grep` pattern analysis for `postMessage` identi
 
 ---
 
-*Sanitized: target product name and iframe URL removed. Full technical report available on request under NDA. Report submitted to HackerOne [REDACTED-REPORT-ID], closed as Duplicate of #3481192 by analyst [REDACTED-ANALYST] on 2026-03-19. Analyst included findings excerpt for transparency.*
+*Sanitized: target product name and iframe URL removed. Full technical report available on request under NDA. Report submitted to [REDACTED-REPORT-ID], closed as Duplicate of [REDACTED-REPORT-ID] by analyst [REDACTED-ANALYST] on 2026-03-19. Analyst included findings excerpt for transparency.*
 

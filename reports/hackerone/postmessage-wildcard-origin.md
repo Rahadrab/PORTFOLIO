@@ -1,18 +1,18 @@
-# HackerOne Report [REDACTED-REPORT-ID]
+# REDACTED-PLATFORM Report [REDACTED-REPORT-ID]
 
 **Title:** postMessage Wildcard Origin ("*") - Session Token Leakage  
-**Program:** [REDACTED-VENDOR] Labs Bounty  
-**Reporter:** rahad_rab  
+**Program:** [REDACTED-COMPANY] Bounty  
+**Reporter:** [REDACTED-USERNAME]  
 **Date Submitted:** March 15, 2026, 6:03pm UTC  
 **Status:** DUPLICATE  
 **Closed:** March 19, 2026, 6:47am UTC by [REDACTED-ANALYST]  
-**Original Report:** #3481192 (reported 2025-12-29)
+**Original Report:** [REDACTED-REPORT-ID] (reported 2025-12-29)
 
 ---
 
 ## Vulnerability Summary
 
-The [REDACTED-VENDOR] Labs enforcement iframe uses `postMessage()` with a wildcard origin (`"*"`), allowing any website to receive sensitive session tokens and challenge completion data.
+The [REDACTED-COMPANY] enforcement iframe uses `postMessage()` with a wildcard origin (`"*"`), allowing any website to receive sensitive session tokens and challenge completion data.
 
 **Vulnerable Code:** All 8 `postMessage` calls use wildcard origin `"*"`, exposing session tokens in the payload:
 
@@ -81,12 +81,12 @@ cat iframe-source.html | grep -oE 'postMessage.*"*"'
 ## Business Impact
 
 **All Customers Affected:**
-- This is [REDACTED-VENDOR]'s CORE fraud prevention product
-- EVERY customer using [REDACTED-VENDOR] Labs is impacted
+- This is [REDACTED-COMPANY]'s CORE fraud prevention product
+- EVERY customer using [REDACTED-COMPANY] is impacted
 - Includes financial institutions, e-commerce, gaming platforms
 
 **Fraud Prevention Bypassed:**
-- Attackers can bypass [REDACTED-VENDOR] protection
+- Attackers can bypass [REDACTED-COMPANY] protection
 - Automated bot attacks become possible
 - Financial losses for customers
 
@@ -105,9 +105,9 @@ cat iframe-source.html | grep -oE 'postMessage.*"*"'
 ## Attack Scenario
 
 1. Attacker creates malicious website
-2. Embeds [REDACTED-VENDOR] iframe (`https://iframe.[REDACTED-DOMAIN]`)
+2. Embeds [REDACTED-COMPANY] iframe (`https://iframe.[REDACTED-DOMAIN]`)
 3. Victim visits attacker's website
-4. [REDACTED-VENDOR] challenge loads (visible or invisible)
+4. [REDACTED-COMPANY] challenge loads (visible or invisible)
 5. Challenge completes/fails/shown
 6. Session token sent to attacker via `postMessage("*")`
 7. Attacker now has valid session token
@@ -131,7 +131,7 @@ cat iframe-source.html | grep -oE 'postMessage.*"*"'
 > 
 > For transparency, I am including an excerpt here from the original report:
 > 
-> **Title:** [REDACTED-VENDOR] Labs CAPTCHA Session Token Exposure via Insecure postMessage Origin leads to token theft
+> **Title:** [REDACTED-COMPANY] CAPTCHA Session Token Exposure via Insecure postMessage Origin leads to token theft
 > **State:** informative
 > **Date:** 2025-12-29T09:30:44.096Z
 > 
@@ -140,12 +140,12 @@ cat iframe-source.html | grep -oE 'postMessage.*"*"'
 > Cheers,
 > [REDACTED-ANALYST]"
 
-**rahad_rab** (March 14, 2026, after submission):
+**[REDACTED-USERNAME]** (March 14, 2026, after submission):
 > "As a new researcher even knowing that my submission was ok is just a great, i m really happy with it, as i know i m in the right path. thank you for your valuable time letting me know this."
 
 ---
 
 ## Status: DUPLICATE
 
-**Closed as duplicate of #3481192** (originally reported 2025-12-29 by another researcher).  
+**Closed as duplicate of [REDACTED-REPORT-ID]** (originally reported 2025-12-29 by another researcher).  
 Finding was validated but duplicate; analyst was courteous and included findings excerpt for transparency. Reporter accepted gracefully and noted they are "in the right path" as a new researcher.

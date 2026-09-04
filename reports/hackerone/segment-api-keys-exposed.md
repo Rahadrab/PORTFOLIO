@@ -1,8 +1,8 @@
-# HackerOne Report [REDACTED-REPORT-ID]
+# REDACTED-PLATFORM Report [REDACTED-REPORT-ID]
 
 **Title:** Multiple Segment API Write Keys Exposed in Client-Side JavaScript  
-**Program:** Robinhood Markets / Say Technologies Bounty  
-**Reporter:** rahad_rab  
+**Program:** [REDACTED-COMPANY] / [REDACTED-COMPANY] Bounty  
+**Reporter:** [REDACTED-USERNAME]  
 **Date Submitted:** March 14, 2026, 7:52am UTC  
 **Status:** RESOLVED / APPROVED  
 **Closed:** Duplicate of [REDACTED-REPORT-ID] (original reporter not identified)
@@ -34,7 +34,7 @@ Both commands return the respective API keys, confirming they are present in the
 curl -X POST "https://api.segment.io/v1/identify" \
 -u "[REDACTED-KEY-1]:" \
 -H "Content-Type: application/json" \
--d '{"userId":"HACKERONE-RAHAD","traits":{"email":"test@test.com","role":"admin"}}'
+-d '{"userId":"REDACTED-TEST","traits":{"email":"test@test.com","role":"admin"}}'
 ```
 **Response:** `{"success": true}`
 
@@ -43,7 +43,7 @@ curl -X POST "https://api.segment.io/v1/identify" \
 curl -X POST "https://api.segment.io/v1/track" \
 -u "[REDACTED-KEY-2]:" \
 -H "Content-Type: application/json" \
--d '{"event":"Test Event","userId":"HACKERONE-RAHAD","properties":{"test":true}}'
+-d '{"event":"Test Event","userId":"REDACTED-TEST","properties":{"test":true}}'
 ```
 **Response:** `{"success": true}`
 
@@ -72,7 +72,7 @@ Both keys were tested and confirmed working with actual API responses showing `{
 - Access Segment dashboard to revoke old keys and generate new ones
 - Audit Segment Data — check for fake users/events already injected
 - Review recent analytics for anomalies
-- Search for user ID: "HACKERONE-RAHAD" (test data created during responsible testing)
+- Search for user ID: "REDACTED-TEST" (test data created during responsible testing)
 
 **Move Keys to Server-Side:**
 - Use environment variables (e.g., `SEGMENT_WRITE_KEY`)
@@ -106,7 +106,7 @@ Both keys were tested and confirmed working with actual API responses showing `{
 > 
 > At this time, we cannot add you to the original report as the report may contain additional information that we cannot share with you. This may include personal information or additional vulnerability information that shouldn't be exposed to other users. Thank you for your understanding."
 
-**rahad_rab** (March 14, 2026, 9:01pm UTC):
+**[REDACTED-USERNAME]** (March 14, 2026, 9:01pm UTC):
 > "As a new researcher even knowing that my submission was ok is just a great, i m really happy with it, as i know i m in the right path. thank you for your valuable time letting me know this."
 
 ---

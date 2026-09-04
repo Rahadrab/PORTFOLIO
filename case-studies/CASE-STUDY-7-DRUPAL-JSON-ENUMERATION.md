@@ -1,11 +1,11 @@
-# Case Study 7 — Drupal Installer + JSON:API User Enumeration ([REDACTED-CUSTOMER] VDP)
+# Case Study 7 — Drupal Installer + JSON:API User Enumeration (VDP Program)
 
 | Field | Value |
 |-------|-------|
 | **Severity** | P3 → P2 (upgraded during triage) |
 | **CWE** | CWE-200 (Exposure of Sensitive Information to Unauthorized Actor) / CWE-702 (Use of Dangerously Permissive Character Encoding) |
 | **Impact** | Admin portal exposure enabling brute-force credential attacks; user enumeration enabling reconnaissance, credential stuffing, and privilege escalation; reputational and financial business impact |
-| **Surface** | Public-facing Web Application ([REDACTED-CUSTOMER] VDP program); [REDACTED-DOMAIN] |
+| **Surface** | Public-facing Web Application (VDP program); [REDACTED-DOMAIN] |
 | **Status** | RESOLVED (13 Nov 2025) — Customer restricted leaked information; VDP program (no monetary reward but finding accepted and triaged) |
 
 ---
@@ -94,10 +94,10 @@ Unauthenticated access to the `/jsonapi/user/user` endpoint allows an attacker t
 
 ### Triaging Process
 
-- **29 Oct 2025:** rahat_rab submitted the finding via Bugcrowd
+- **29 Oct 2025:** [REDACTED-USERNAME] submitted the finding via [REDACTED-PLATFORM]
 - **01 Nov 2025:** [REDACTED-ANALYST] changed severity from P3 to P2 during triage
 - **01 Nov 2025:** Finding marked as Triaged; customer team to have closer look
-- **13 Nov 2025:** SRamay resolved the finding; team restricted the leaked information
+- **13 Nov 2025:** [REDACTED-ANALYST] resolved the finding; team restricted the leaked information
 - **Status:** RESOLVED
 
 ---
@@ -144,9 +144,9 @@ Unauthenticated access to the `/jsonapi/user/user` endpoint allows an attacker t
 
 ## Tooling
 
-curl commands for endpoint testing, response-body capture, screenshot capture — developed through manual verification. Verified both endpoints' access levels before and after remediation. Bugcrowd submission format followed for triage.
+curl commands for endpoint testing, response-body capture, screenshot capture — developed through manual verification. Verified both endpoints' access levels before and after remediation. [REDACTED-PLATFORM] submission format followed for triage.
 
 ---
 
-*Sanitized: target website name fully removed ([REDACTED-DOMAIN] context maintained for VDP program recognition). Full technical report and screenshots available in original Bugcrowd submission (submitted 29 Oct 2025). Report acknowledged by SRamay (13 Nov 2025): "Welcome to the program! Thanks for this finding — the team was able to restrict the leaked information." VDP program: no monetary reward but finding accepted and triaged.*
+*Sanitized: target website name fully removed ([REDACTED-DOMAIN] context maintained for VDP program recognition). Full technical report and screenshots available in original [REDACTED-PLATFORM] submission (submitted 29 Oct 2025). Report acknowledged by [REDACTED-ANALYST] (13 Nov 2025): "Welcome to the program! Thanks for this finding — the team was able to restrict the leaked information." VDP program: no monetary reward but finding accepted and triaged.*
 

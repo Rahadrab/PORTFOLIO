@@ -113,7 +113,7 @@ Developed the full account takeover chain:
 - **API input validation missing** — no sanitization, no output encoding
 - **CVSS:** ~9.8 (Critical) — XSS with persistent execution and admin ATO
 
-**Triage Outcome:** Report [REDACTED-REPORT-ID] submitted to HackerOne. Triage dispute occurred regarding reporter account status (new account on program). Finding was **validated by technical merits** but closure decision impacted by program's new-account policies. Reporter's submission demonstrated thorough proof-of-concept chain from payload delivery to admin ATO.
+**Triage Outcome:** Report [REDACTED-REPORT-ID] submitted to REDACTED-PLATFORM. Triage dispute occurred regarding reporter account status (new account on program). Finding was **validated by technical merits** but closure decision impacted by program's new-account policies. Reporter's submission demonstrated thorough proof-of-concept chain from payload delivery to admin ATO.
 
 ---
 
@@ -172,5 +172,5 @@ expression=%3Csvg/onload%3Dalert(%27XSS%27)%3E&submit=Calculate
 
 ---
 
-*Sanitized: target application name, specific API URLs, and company name removed. Full technical report including POC videos, request/response captures, and admin demo available on request under NDA. Report submitted to HackerOne as [REDACTED-REPORT-ID], triage validated finding merits despite account-status closure dispute.*
+*Sanitized: target application name, specific API URLs, and company name removed. Full technical report including POC videos, request/response captures, and admin demo available on request under NDA. Report submitted to REDACTED-PLATFORM as [REDACTED-REPORT-ID], triage validated finding merits despite account-status closure dispute.*
 

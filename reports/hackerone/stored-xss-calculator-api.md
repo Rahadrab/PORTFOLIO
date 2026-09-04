@@ -1,11 +1,11 @@
-# HackerOne Report [REDACTED-REPORT-ID]
+# REDACTED-PLATFORM Report [REDACTED-REPORT-ID]
 
 **Title:** Stored XSS via Calculator API - Admin Account Takeover  
-**Program:** [REDACTED-VENDOR] Labs Bounty  
-**Reporter:** rahad_rab  
+**Program:** [REDACTED-COMPANY] Bounty  
+**Reporter:** [REDACTED-USERNAME]  
 **Date Submitted:** ~March 2026  
 **Status:** TRIAGE DISPUTE — Finding validated by technical merits but closure impacted by reporter's new-account status on program  
-**Support Ticket:** #646327 (HackerOne Support Escalation, OPEN, 5+ days no response)  
+**Support Ticket:** [REDACTED-TICKET] (REDACTED-PLATFORM Support Escalation, OPEN, 5+ days no response)  
 **Evidence:** 27+ files including video proof, attack scripts, attack logs, full documentation  
 
 ---
@@ -72,7 +72,7 @@ When an admin user accessed the calculator page or any page rendering calculator
 
 **Mediation Files (4 files):**
 - `MEDIATION_REQUEST.md` (7.6 KB) — Full mediation request
-- `HACKERONE_SUPPORT_MESSAGE.md` (2.5 KB) — Support message
+- `REDACTED-FILE.md` (2.5 KB) — Support message
 - `REPORT_COMMENT.txt` (1.6 KB) — Report comment
 - `EXACT_COMMENT_TO_POST.txt` (371 bytes) — Exact words to post
 
@@ -87,18 +87,18 @@ When an admin user accessed the calculator page or any page rendering calculator
 - `PUBLIC_WARNING_PLAN.txt` (20 KB) — Warning plan for new researchers
 - `SCREENSHOT_CHECKLIST.txt` (5.7 KB) — Screenshot verification checklist
 
-**HackerOne Support:**
-- Support Ticket #646327 — Open, 5+ days no response
+**REDACTED-PLATFORM Support:**
+- Support Ticket [REDACTED-TICKET] — Open, 5+ days no response
 - Video proof submitted: `finnal-xss-validation.mp4`
 - 13 attachments in support ticket
 - Precedent referenced: Uber, Twitter, Revive
 - Deadlines set: 24hr, 48hr
 
 **Screenshots (4 files):**
-- `screencapture-support-hackerone-support-tickets-646327-2026-03-26-17_24_33.png` — Support escalation ticket
-- `Screenshot_26-3-2026_4377_bugcrowd.com.jpeg` — Bugcrowd resolved report ([REDACTED-DOMAIN])
-- `Screenshot_26-3-2026_44122_bugcrowd.com.jpeg` — Bugcrowd WAF/CDN bypass report (akhwien.at)
-- `Screenshot_26-3-2026_44216_bugcrowd.com.jpeg` — Bugcrowd CSP bypass report (akhwien.at)
+- `screencapture-support-REDACTED-PATH-2026-03-26-17_24_33.png` — Support escalation ticket
+- `Screenshot_26-3-2026_4377_REDACTED-DOMAIN.jpeg` — REDACTED-PLATFORM resolved report ([REDACTED-DOMAIN])
+- `Screenshot_26-3-2026_44122_REDACTED-DOMAIN.jpeg` — REDACTED-PLATFORM WAF/CDN bypass report ([REDACTED-DOMAIN])
+- `Screenshot_26-3-2026_44216_REDACTED-DOMAIN.jpeg` — REDACTED-PLATFORM CSP bypass report ([REDACTED-DOMAIN])
 
 ---
 
@@ -106,16 +106,16 @@ When an admin user accessed the calculator page or any page rendering calculator
 
 **Finding:** Validated by technical merits — Stored XSS → Admin ATO chain fully demonstrated with video proof, attack scripts, and 27+ supporting files.
 
-**Triage Issue:** Closure decision impacted by reporter's new-account status on the HackerOne program. The finding was technically valid but the triage process did not fully account for the reporter's new status on the platform.
+**Triage Issue:** Closure decision impacted by reporter's new-account status on the REDACTED-PLATFORM program. The finding was technically valid but the triage process did not fully account for the reporter's new status on the platform.
 
-**Response:** Reporter prepared extensive public escalation materials, support ticket escalation (#646327), and video evidence (finnal-xss-validation.mp4). Ticket remains open with no response after 5+ days. Precedent cited from Uber, Twitter, and Revive bug bounty escalations.
+**Response:** Reporter prepared extensive public escalation materials, support ticket escalation ([REDACTED-TICKET]), and video evidence (finnal-xss-validation.mp4). Ticket remains open with no response after 5+ days. Precedent cited from Uber, Twitter, and Revive bug bounty escalations.
 
 ---
 
 ## Status
 
-Finding validated by technical merit. Support ticket #646327 OPEN (5+ days). Public escalation materials prepared. Researcher continuing to escalate through all available channels including public warning platforms.
+Finding validated by technical merit. Support ticket [REDACTED-TICKET] OPEN (5+ days). Public escalation materials prepared. Researcher continuing to escalate through all available channels including public warning platforms.
 
 ---
 
-*Full evidence available at `[REDACTED-PATH]/`*
+*Full evidence available at `[REDACTED-PATH]/REDACTED-PATH/`*

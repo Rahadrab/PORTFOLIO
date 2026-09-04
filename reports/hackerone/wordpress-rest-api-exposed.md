@@ -1,8 +1,8 @@
-# HackerOne Report [REDACTED-REPORT-ID]
+# REDACTED-PLATFORM Report [REDACTED-REPORT-ID]
 
 **Title:** WordPress REST API Publicly Exposed - Information Disclosure  
-**Program:** [REDACTED-VENDOR] Labs Bounty  
-**Reporter:** rahad_rab  
+**Program:** [REDACTED-COMPANY] Bounty  
+**Reporter:** [REDACTED-USERNAME]  
 **Date Submitted:** March 14, 2026, 8:58pm UTC  
 **Status:** INFORMATIONAL  
 **Closed:** March 18, 2026, 12:23pm UTC by [REDACTED-ANALYST]
@@ -58,7 +58,7 @@ The exposed REST API discloses the following security risks:
 - Combined with REST API exposure, significantly increases attack surface
 
 **Business Impact:**
-- Increased risk of targeted attacks on [REDACTED-VENDOR] Labs website
+- Increased risk of targeted attacks on [REDACTED-COMPANY] website
 - Potential for plugin exploitation leading to site compromise
 - Reputation damage if site is compromised
 - Violation of security best practices (WordPress hardening guidelines)
