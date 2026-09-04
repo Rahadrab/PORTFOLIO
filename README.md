@@ -106,7 +106,7 @@ Enforcement iframe uses `postMessage()` with wildcard origin (`*`), exposing ses
 VDP — Drupal Installer Exposure (P3→P2) + JSON:API User Enumeration. **Triage:** RESOLVED — analyst said "Welcome to the program! Thanks for this finding — the team was able to restrict the leaked information." Severity upgraded P3→P2 during triage.
 
 ### [Case Study 8 — Stored XSS via Calculator API → Admin ATO](case-studies/CASE-STUDY-8-STORED-XSS-CALCULATOR-API.md)
-P2 Critical (CVSS ~9.8). Stored XSS in calculator API endpoint persisted in database, executed on admin pages, enabling full admin account takeover. **Triage:** Triaged (dispute) — finding validated by technical merits but closure impacted by new-account status on program. 27+ evidence files including video proof. Support Ticket open 5+ days.
+P2 Critical (CVSS ~9.8). Stored XSS in calculator API endpoint persisted in database, executed on admin pages, enabling full admin account takeover. **Triage Dispute:** Finding validated by technical merits but closure based on **impossible evidence requirements** (asked reporter for admin panel access — violates HackerOne policy for external researchers). Closed in **25 minutes** after POC submission (industry standard: 24-48 hours). HackerOne AI independently confirmed the grievance. Support ticket open 5+ days. 27+ evidence files including video proof.
 
 ---
 

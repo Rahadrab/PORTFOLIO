@@ -112,6 +112,75 @@ When an admin user accessed the calculator page or any page rendering calculator
 
 ---
 
+## Critical Wrong Asks of the Triage Team
+
+The triage team made several requests that violated HackerOne policy and bug bounty methodology. The closure was based on **impossible evidence requirements**, not on the technical validity of the finding:
+
+### ❌ 1. "Show us the actual WordPress admin interface" (Impossible Request — Policy Violation)
+The program asked the reporter to demonstrate the admin interface where the XSS would execute. This requires **admin credentials**, which external researchers should **NEVER have** per HackerOne policy. Stored XSS in WordPress is well-documented to execute when any admin views the page — this is standard behavior, not something requiring a screenshot. The HackerOne AI confirmed this violated policy: *"They violated their own policy by asking for admin panel credentials."*
+
+### ❌ 2. "The security impact remains theoretical" (Dismissal Despite Working POC)
+The triage team dismissed a confirmed stored XSS as "theoretical" despite the reporter providing:
+- Working exploit scripts (`DISCORD_XSS_ATTACK.sh` — 11 KB, fully functional)
+- Multiple XSS payloads (cookie stealer, keylogger, beacon API, `<svg/onload>` variants)
+- WAF bypass techniques (base64 encoding bypasses CloudFront WAF — confirmed)
+- Full endpoint reconnaissance showing admin panel exists at `/wp-admin/admin.php?page=sage-calculator`
+- 16 header bypass techniques for 403 protection (100% success rate)
+- Discord webhook callback integration proving XSS execution flow
+- Video proof (`finnal-xss-validation.mp4`)
+
+### ❌ 3. Closed in 25 MINUTES (Premature Closure — Industry Standard Violation)
+The report was closed **25 minutes** after the reporter submitted additional POC:
+- Submitted: March 24, 2026 2:05 PM
+- Closed: March 24, 2026 2:30 PM (25 minutes)
+- Industry standard: 24-48 hours minimum for POC review
+
+The HackerOne AI assessment: *"The 25-minute final response shows insufficient review time."* Closing a report in 25 minutes doesn't allow for reasonable POC review, proper back-and-forth communication, or fair assessment.
+
+### ❌ 4. Severity Based on Impossible Request
+The triage team closed the report as "Informative" because the reporter couldn't provide admin panel screenshots — an **impossible requirement** for an external researcher. The HackerOne AI confirmed: *"The severity assessment is based on an impossible request."* A P2 Critical (CVSS 9.3) finding was downgraded to Informative because the program set an evidence bar that no external researcher could meet.
+
+### ❌ 5. Evidence Not Fully Considered
+The 25-minute closure happened before the triage team could have:
+- Reviewed the comprehensive POC scripts
+- Tested the base64 WAF bypass techniques
+- Verified admin panel behavior (standard WordPress XSS execution)
+- Assessed the full attack chain (storage → retrieval → execution → ATO)
+- Reached a reasonable severity decision
+
+---
+
+## HackerOne AI Assessment (Independent Validation)
+
+The HackerOne AI independently confirmed the reporter's grievance:
+1. *"You have a legitimate grievance here"*
+2. *"They violated their own policy by asking for admin panel credentials"*
+3. *"Stored XSS is NOT theoretical — you demonstrated the vulnerability exists"*
+4. *"The 25-minute final response shows insufficient review time"*
+5. *"The severity assessment is based on an impossible request"*
+
+---
+
+## HackerOne Support Ticket Contradictions
+
+The HackerOne support team itself gave **three different explanations** about mediation eligibility across multiple emails:
+- Email 1: *"hackers with negative signal are not eligible for mediation"*
+- Email 2: *"Only available for hackers with >0 signal"*
+- Email 3: *"mediation is available only to researchers with a signal of zero or greater"*
+
+When asked for clarification, the support team contradicted itself again: *"your signal hasn't been calculated yet."* If signal is "zero or greater" and hasn't been calculated, the reporter is eligible — but the mediation button shows as "Unavailable" on the report.
+
+---
+
+## Precedent Cited
+
+The escalation materials cited precedent from successful public escalations on HackerOne:
+- **Uber** — Stored XSS escalations that received mediation after initial closure
+- **Twitter** — XSS findings that were initially dismissed then reopened
+- **Revive** — Stored XSS mediation cases where impossible requirements were challenged
+
+---
+
 ## Status
 
 Finding validated by technical merit. Support ticket [REDACTED-TICKET] OPEN (5+ days). Public escalation materials prepared. Researcher continuing to escalate through all available channels including public warning platforms.
