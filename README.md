@@ -51,6 +51,22 @@ All PoCs developed through AI-assisted generation, architected and validated by 
 
 ---
 
+## Automation & Tooling
+
+| Script | Purpose |
+|--------|---------|
+| [`auto-workflow.sh`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/auto-workflow.sh) | 500+ line recon pipeline — subdomain enum, DNS resolution, HTTP probing, directory scanning, URL crawling, vuln scanning, SQLi testing, JS analysis, OIDC discovery, GraphQL/S3/CORS testing, nmap, CMS scanning |
+| [`auto-dork.sh`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/auto-dork.sh) | 1000+ line multi-engine dorking — Google, Bing, DuckDuckGo, GitHub code search, InternetDB/crt.sh, Wayback Machine, AlienVault OTX, FOFA, URLScan.io, cloud bucket enumeration, subdomain dorking |
+| [`lucene_injection_poc.py`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/lucene_injection_poc.py) | Search query injection → ACL bypass exploitation for Elasticsearch/Lucene backends |
+| [`csrf_poc.py`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/csrf_poc.py) | CSRF chain development with auto-generated PoC HTML and cURL commands |
+| [`graphql_control.py`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/graphql_control.py) | GraphQL authorization testing — introspection, depth limiting, batching, info disclosure |
+| [`turnstile-bypass.py`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/turnstile-bypass.py) | Cloudflare Turnstile implementation weakness research |
+| [`jwt_none_runner.py`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/jwt_none_runner.py) | JWT algorithm confusion testing — none algorithm, HS256/RS256 confusion, key injection |
+
+All scripts: [github.com/Rahadrab/SEC-SCRIPTS](https://github.com/Rahadrab/SEC-SCRIPTS)
+
+---
+
 ## Profiles
 
 | Platform | Link |
