@@ -31,6 +31,26 @@
 
 ---
 
+## Methodology
+
+| Phase | Description |
+|-------|-------------|
+| **Recon** | Automated subdomain enumeration, port scanning, service fingerprinting |
+| **Dorking** | Google/Bing/GitHub dorking for exposed endpoints, secrets, and API documentation |
+| **Discovery** | Manual endpoint mapping, API surface analysis, technology stack identification |
+| **Vulnerability Research** | Auth logic analysis, access control testing, business logic evaluation |
+| **Exploitation** | PoC development, exploit chain construction, impact validation |
+| **Reporting** | CWE/OWASP mapping, GDPR impact framing, structured evidence packages |
+
+**Automation toolkit:**
+- `auto-workflow.sh` — 500+ line recon pipeline (subdomain enum → port scan → service detection → tech fingerprint)
+- `auto-dork.sh` — 1000+ line Google/Bing/GitHub dorking automation
+- Custom Python/Bash scripts for CSRF chains, search injection, session capture, OIDC flows
+
+All PoCs developed through AI-assisted generation, architected and validated by me.
+
+---
+
 ## Profiles
 
 | Platform | Link |
