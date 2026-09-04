@@ -145,6 +145,16 @@ expression=%3Csvg/onload%3Dalert(%27XSS%27)%3E&submit=Calculate
 
 ---
 
+## Triage Response & Recommendation
+
+**Triage Outcome:** TRIAGE DISPUTE — Finding was validated by technical merits (Stored XSS → Admin ATO chain fully demonstrated with video proof, attack scripts, and 27+ supporting files), but the closure decision was impacted by the reporter's new-account status on the program.
+
+**Analyst Recommendation:** The triage team's questions were out of platform policy scope (requesting details beyond the standard report format). The reporter escalated via HackerOne Support Ticket [REDACTED-TICKET] (open 5+ days, no response at time of writing) and prepared public escalation materials with precedent cited from Uber, Twitter, and Revive bug bounty escalations.
+
+**Reporter Takeaway:** This is the "new account on program" trap — a technically flawless P2 Critical (CVSS ~9.8) finding was overshadowed by reputation. The lesson: build program reputation on smaller findings first, save the high-impact discoveries for accounts with established signal. The support ticket is still open and the evidence package is the strongest argument for mediation if HackerOne reconsiders.
+
+---
+
 ## Remediation Delivered
 
 - **Input sanitization:** Added comprehensive input validation for calculator API endpoints

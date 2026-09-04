@@ -94,19 +94,19 @@ Lucene/Elasticsearch injection bypassing WAF + scope controls. Exposed 5,940 int
 Verified unauthenticated arbitrary `.html` file read on EOL university platform. Version-confirmed vulnerable, relative + absolute PoC chains.
 
 ### [Case Study 4 — Segment API Keys Exposed](case-studies/CASE-STUDY-4-SEGMENT-KEYS-EXPOSED.md)
-Two Segment Write Keys exposed in client-side JavaScript, both tested with `{"success": true}` API responses. Enables fake analytics injection and data corruption.
+Two Segment Write Keys exposed in client-side JavaScript, both tested with `{"success": true}` API responses. Enables fake analytics injection and data corruption. **Triage:** RESOLVED/APPROVED — analyst validated independent verification work and closed as RESOLVED.
 
 ### [Case Study 5 — WordPress REST API Exposed](case-studies/CASE-STUDY-5-WORDPRESS-REST-API.md)
-Unauthenticated `/wp-json/` endpoint exposure on production subdomain. Same data publicly available via website so closed Informative.
+Unauthenticated `/wp-json/` endpoint exposure on production subdomain. **Triage:** Informative — analyst said "keep submitting findings" and acknowledged the report.
 
 ### [Case Study 6 — postMessage Wildcard Origin](case-studies/CASE-STUDY-6-POSTMESSAGE-WILDCARD.md)
-Enforcement iframe uses `postMessage()` with wildcard origin (`*`), exposing session tokens to any embedding website. 8 calls identified, all leak `sessionToken:e.token`. Closed as Duplicate.
+Enforcement iframe uses `postMessage()` with wildcard origin (`*`), exposing session tokens to any embedding website. 8 calls identified, all leak `sessionToken:e.token`. **Triage:** Duplicate — analyst was courteous: "appreciate the time you invested... look forward to your next awesome bug report."
 
 ### [Case Study 7 — Drupal + JSON:API Enumeration](case-studies/CASE-STUDY-7-DRUPAL-JSON-ENUMERATION.md)
-VDP — Drupal Installer Exposure (P3→P2) + JSON:API User Enumeration. Customer restricted leaked information. RESOLVED.
+VDP — Drupal Installer Exposure (P3→P2) + JSON:API User Enumeration. **Triage:** RESOLVED — analyst said "Welcome to the program! Thanks for this finding — the team was able to restrict the leaked information." Severity upgraded P3→P2 during triage.
 
 ### [Case Study 8 — Stored XSS via Calculator API → Admin ATO](case-studies/CASE-STUDY-8-STORED-XSS-CALCULATOR-API.md)
-P2 Critical (CVSS ~9.8). Stored XSS in calculator API endpoint persisted in database, executed on admin pages, enabling full admin account takeover. Finding validated by technical merits, triage closure impacted by new-account status. 27+ evidence files including video proof.
+P2 Critical (CVSS ~9.8). Stored XSS in calculator API endpoint persisted in database, executed on admin pages, enabling full admin account takeover. **Triage:** Triaged (dispute) — finding validated by technical merits but closure impacted by new-account status on program. 27+ evidence files including video proof. Support Ticket open 5+ days.
 
 ---
 

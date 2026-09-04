@@ -141,6 +141,16 @@ Navigated to standard WordPress REST API endpoint (`/wp-json/`). Confirmed immed
 
 ---
 
+## Triage Response & Recommendation
+
+**Triage Outcome:** INFORMATIONAL — analyst closed the report as Informative, explaining that the data exposed via `/wp-json/` was already publicly visible through the website's normal UI, and the API only exposes sensitive/private data when authenticated.
+
+**Analyst Recommendation:** "Keep submitting findings" — the analyst encouraged the reporter to continue research on the program. No bounty awarded, but the report was acknowledged and the finding documented.
+
+**Reporter Takeaway:** This was a positive outcome despite the Informative closure. The triage team's explicit encouragement to continue was the green light that mattered. The lesson: an Informative closure from a courteous analyst is a recommendation to keep digging, not a rejection. Every program interaction is reputation-building.
+
+---
+
 ## Tooling
 
 Response-body capture, diff/compare scripts, gobuster directory enumeration, JSON parsing and analysis scripts — developed through AI-assisted generation. Designed the enumeration chain, reviewed each request, and validated every result against raw response captures. WordPress REST API knowledge: routes, namespaces, settings, and user endpoints.
