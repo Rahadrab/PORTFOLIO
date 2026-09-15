@@ -72,6 +72,42 @@ All scripts: [github.com/Rahadrab/SEC-SCRIPTS](https://github.com/Rahadrab/SEC-S
 
 ---
 
+## Red Team Toolkit
+
+Tools actively deployed in engagements — verified and operational.
+
+### Exploitation Frameworks
+
+| Tool | Version | Use Case | Status |
+|------|---------|----------|--------|
+| **Metasploit (`msfconsole`)** | 6.x | Exploitation, post-exploitation, privilege escalation, C2 | Active |
+| **BeEF (`beef-xss`)** | 0.6.0.0 | Browser exploitation, hook injection, client-side command execution | Active |
+
+**Metasploit modules:** Auxiliary, Exploit, Post, Payload, Encoder, NOP — full exploitation chain: search → use → set → exploit.
+
+**BeEF features:** Hook.js injection, command queue, REST API, WebSocket (port 3000/61985), browser-side RCE.
+
+### AI Security / LLM Red Team
+
+| Tool | Version | Use Case | Status |
+|------|---------|----------|--------|
+| **Garak** | 0.17.0 | LLM vulnerability scanning — prompt injection, jailbreaks, data extraction | Active |
+
+**Garak probes:** 100+ plugins across 15+ categories — prompt_injection, hallucination, encoding, overrefusal, encoding, etc.
+
+**Run:** `python -m garak -t probes --target <model>`
+
+### Methodology: Tool → Finding → Evidence
+
+```
+Recon (auto-workflow.sh) → Discovery (manual mapping) → Exploitation (msfconsole/BeEF)
+→ Validation (Garak for AI/LLM) → Reporting (CWE/OWASP mapped) → Evidence Package
+```
+
+All findings delivered as structured evidence: root cause, sanitized reproduction, PoC, impact, remediation.
+
+---
+
 ## Profiles
 
 | Platform | Link |
@@ -120,12 +156,9 @@ P2 Critical (CVSS ~9.8). Stored XSS in calculator API endpoint persisted in data
 
 | Role Type | Attach |
 |-----------|--------|
-| Auth / API Security | Case Study 1 (ATO) |
+| Red Team / Offensive | Case Study 1 (ATO), Case Study 8 (Stored XSS → Admin ATO), Red Team Toolkit (Metasploit, BeEF, Garak) |
+| AI Security | Case Study 1 + Garak prompt injection testing |
 | Web AppSec / Pentest | Case Study 2 (Search Injection), Case Study 7 (Drupal/JSON:API) |
-| Red Team / Offensive | Case Study 1 (ATO), Case Study 8 (Stored XSS → Admin ATO) |
-| Security Analyst / Triage | Case Study 3 (CVE), Case Study 6 (postMessage) |
-| Bug Bounty / Reporting | Case Study 4 (Segment Keys), Case Study 5 (WP REST API) |
-| AI Security | Case Study 1 + prompt injection research |
 
 **Rule:** CV + max 2 redacted PDFs, matched to role. Never attach raw evidence or program-named files.
 
