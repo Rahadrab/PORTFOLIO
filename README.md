@@ -72,6 +72,28 @@ All scripts: [github.com/Rahadrab/SEC-SCRIPTS](https://github.com/Rahadrab/SEC-S
 
 ---
 
+## Burp Suite Extensions (Active)
+
+Professional-grade extensions for advanced testing — not the default suite.
+
+| Extension | Purpose | Category |
+|-----------|---------|----------|
+| **Param Miner** | Discovers hidden, unlinked parameters — web cache poisoning, unlinked param injection | Recon |
+| **Active Scan++** | Enhanced active scanner with 50+ additional checks beyond Burp default | Scanning |
+| **TLS Fingerprint Bypasser** | Mutates TLS ciphers to bypass bot detection (Cloudflare, Akamai, AWS WAF) | WAF Bypass |
+| **CSRF Scanner** | Passive CSRF detection — analyzes tokens, checks for missing validation | Auth Testing |
+| **JOSEPH** | JOSE (JWT/JWS/JWE/JOSE) pentesting helper — algorithm confusion, key injection | Auth/JWT |
+| **WAF Bypass** | Adds headers to all requests to bypass WAF products | WAF Bypass |
+| **Burp MCP** | MCP server integration — AI-assisted analysis and automation | AI/Automation |
+
+**These are not default Burp extensions.** Each one fills a specific gap in the standard toolset. Combined, they enable:
+- Hidden parameter discovery → cache poisoning → data exposure chains
+- TLS fingerprint evasion → WAF bypass → deeper scope access
+- JWT/JOSE algorithm confusion → auth bypass
+- AI-assisted analysis → faster triage
+
+---
+
 ## Red Team Toolkit
 
 Tools actively deployed in engagements — verified and operational.
@@ -101,7 +123,7 @@ Tools actively deployed in engagements — verified and operational.
 
 ```
 Recon (auto-workflow.sh) → Discovery (manual mapping) → Exploitation (msfconsole/BeEF)
-→ Validation (Garak for AI/LLM) → Reporting (CWE/OWASP mapped) → Evidence Package
+→ WAF Bypass (Burp extensions) → Validation (Garak for AI/LLM) → Reporting (CWE/OWASP mapped) → Evidence Package
 ```
 
 All findings delivered as structured evidence: root cause, sanitized reproduction, PoC, impact, remediation.
