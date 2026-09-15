@@ -142,7 +142,7 @@ Enforcement iframe uses `postMessage()` with wildcard origin (`*`), exposing ses
 VDP — Drupal Installer Exposure (P3→P2) + JSON:API User Enumeration. **Triage:** RESOLVED — analyst said "Welcome to the program! Thanks for this finding — the team was able to restrict the leaked information." Severity upgraded P3→P2 during triage.
 
 ### [Case Study 8 — Stored XSS via Calculator API → Admin ATO](case-studies/CASE-STUDY-8-STORED-XSS-CALCULATOR-API.md)
-P2 Critical (CVSS ~9.8). Stored XSS in calculator API endpoint persisted in database, executed on admin pages, enabling full admin account takeover. **Triage Dispute:** Finding validated by technical merits but closure based on **impossible evidence requirements** (asked reporter for admin panel access — violates HackerOne policy for external researchers). Closed in **25 minutes** after POC submission (industry standard: 24-48 hours). HackerOne AI independently confirmed the grievance. Support ticket open 5+ days. 27+ evidence files including video proof.
+P2 Critical (CVSS ~9.8). Stored XSS in calculator API endpoint persisted in database, executed on admin pages, enabling full admin account takeover. What I keep from this one: my proof needed admin-panel access I wouldn’t force — ethics stays higher than any single report, so I stopped at the line and demoed safely instead (video PoC, 27 files, local sample). It still closed, and support replies left me waiting days between templates — that waiting is what made me stop working HackerOne. The mediation gate (3 valids in 3 months) can be impossible new. So to new researchers: don’t rage past lines that can hurt you — document clean, stack valids, walk standing.
 
 ---
 
