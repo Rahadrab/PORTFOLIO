@@ -52,3 +52,33 @@ In authorized engagements, cell tower triangulation proves:
 - Movement patterns between towers
 - Device presence at specific locations
 - Coverage area analysis
+
+## OpenCellID Registration (FREE API Key)
+
+**URL:** https://my.opencellid.org/register
+**Status:** Registration submitted ✅
+**Email:** rahat.rab@outlook.com
+**Name:** Rahad Rabbani
+**Purpose:** Get free API key for precise cell tower geolocation
+
+### After Registration:
+1. Check email for confirmation → activate account
+2. Get API key from dashboard → https://my.opencellid.org/api
+3. Use API: `GET /cell/get?key=YOUR_KEY&mcc=470&mnc=1&lac=10250&cellid=26511&format=json`
+4. Returns: `{lat, lon, accuracy, range, samples}` — **PRECISE location**
+
+### Free Alternatives for Precise Location:
+| Service | Cost | Precision | How |
+|---------|------|-----------|-----|
+| **OpenCellID API** | Free tier | ~50-500m | Register at my.opencellid.org |
+| **Google Maps Geolocation API** | Free tier ($200/mo) | ~100-500m | Google Cloud Console → enable Geolocation API |
+| **UnwiredLabs API** | Free tier | ~50-500m | https://unwiredlabs.com/locationapi |
+| **findcellid.com** | Free | ~1km | Web interface, no API key needed |
+
+### Precision Comparison:
+- **CellMapper (general):** Shows ALL towers → ~1-5km accuracy
+- **findcellid.com (specific):** Specific tower lookup → ~500m-1km accuracy
+- **OpenCellID/Google Maps API:** MCC/MNC/LAC/CellID → **~50-200m accuracy** ✅ PRECISE
+
+### Key Takeaway:
+The PRECISE tool = OpenCellID/Google Maps Geolocation API with specific cell tower IDs (MCC/MNC/LAC/CellID) → returns lat/lon + accuracy radius.
