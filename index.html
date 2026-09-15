@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rahad Rabbani — Offensive Security Researcher</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', monospace;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+    .hero {
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+      border-bottom: 2px solid #00ff88;
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .hero h1 { color: #00ff88; font-size: 2.5em; margin-bottom: 10px; }
+    .hero .subtitle { color: #8b949e; font-size: 1.2em; }
+    .badges { margin-top: 20px; }
+    .badge {
+      display: inline-block;
+      background: #00ff88;
+      color: #0a0a0a;
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin: 5px;
+      font-size: 0.9em;
+    }
+    .badge.warn { background: #f0883e; color: #0a0a0a; }
+    .badge.blue { background: #58a6ff; color: #0a0a0a; }
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      padding: 40px;
+      background: #161b22;
+      border-bottom: 1px solid #30363d;
+    }
+    .stat { text-align: center; }
+    .stat .number { color: #00ff88; font-size: 2.5em; font-weight: bold; }
+    .stat .label { color: #8b949e; font-size: 0.9em; }
+    .section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px 40px;
+    }
+    .section h2 {
+      color: #00ff88;
+      border-left: 4px solid #00ff88;
+      padding-left: 15px;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    th { background: #161b22; color: #00ff88; text-align: left; padding: 12px; border-bottom: 2px solid #30363d; }
+    td { padding: 10px 12px; border-bottom: 1px solid #21262d; }
+    tr:hover { background: #161b22; }
+    .severity-high { color: #f85149; font-weight: bold; }
+    .severity-p2 { color: #f0883e; font-weight: bold; }
+    .severity-p3 { color: #d29922; font-weight: bold; }
+    .severity-clean { color: #00ff88; font-weight: bold; }
+    a { color: #58a6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .quote {
+      background: #161b22;
+      border-left: 4px solid #f0883e;
+      padding: 20px 30px;
+      margin: 20px 0;
+      font-style: italic;
+      color: #c9d1d9;
+    }
+    .footer {
+      text-align: center;
+      padding: 40px;
+      color: #8b949e;
+      border-top: 1px solid #30363d;
+      margin-top: 60px;
+    }
+    .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+    .tool-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .tool-card h3 { color: #00ff88; margin-bottom: 8px; }
+    .tool-card .status { color: #00ff88; font-size: 0.8em; }
+    .extension-tag {
+      display: inline-block;
+      background: #161b22;
+      border: 1px solid #00ff88;
+      color: #00ff88;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.8em;
+      margin: 2px;
+    }
+    @media (max-width: 768px) {
+      .stats { flex-direction: column; gap: 20px; }
+      .hero h1 { font-size: 1.8em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>RAHAD RABBANI</h1>
+    <p class="subtitle">Offensive Security Researcher | Red Team | Bug Bounty</p>
+    <div class="badges">
+      <span class="badge">CEH A52W25045098</span>
+      <span class="badge blue">Bugcrowd</span>
+      <span class="badge blue">Intigriti</span>
+      <span class="badge warn">100% Remote</span>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="number">10+</div>
+      <div class="label">Verified Findings</div>
+    </div>
+    <div class="stat">
+      <div class="number">8</div>
+      <div class="label">Case Studies</div>
+    </div>
+    <div class="stat">
+      <div class="number">7</div>
+      <div class="label">Burp Extensions</div>
+    </div>
+    <div class="stat">
+      <div class="number">500+</div>
+      <div class="label">Lines Automation</div>
+    </div>
+    <div class="stat">
+      <div class="number">2yr+</div>
+      <div class="label">Bug Bounty</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🔍 Verified Findings</h2>
+    <table>
+      <tr><th>Severity</th><th>Finding</th><th>Class</th></tr>
+      <tr><td class="severity-high">High</td><td>Account Takeover via Missing Re-Authentication (OIDC + GraphQL)</td><td>CWE-306 / CWE-620</td></tr>
+      <tr><td class="severity-p2">P2</td><td>Search-Query Injection → ACL Bypass + Health Data Exposure</td><td>CWE-200 / CWE-284</td></tr>
+      <tr><td class="severity-p2">P2</td><td>WAF Bypass + reCAPTCHA v3 Bypass (4-route cross-product)</td><td>WAF Evasion</td></tr>
+      <tr><td class="severity-clean">Clean</td><td>SAML 2.0 Audit across 5 enterprise IdPs</td><td>SAML/SSO</td></tr>
+      <tr><td class="severity-p2">P2</td><td>Stored XSS via Calculator API → Admin ATO</td><td>CWE-79 / CWE-352</td></tr>
+      <tr><td class="severity-p2">P2</td><td>postMessage Wildcard Origin → Session Token Leak</td><td>CWE-201 / CWE-942</td></tr>
+      <tr><td class="severity-p3">P3</td><td>CVE-2021-43264 — Unauthenticated Path Traversal</td><td>CWE-22</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>🛠️ Burp Suite Extensions (Active)</h2>
+    <div class="tool-grid">
+      <div class="tool-card"><h3>Param Miner</h3><p>Hidden parameter discovery, cache poisoning</p><span class="status">● Active</span></div>
+      <div class="tool-card"><h3>Active Scan++</h3><p>50+ enhanced checks beyond default Burp</p><span class="status">● Active</span></div>
+      <div class="tool-card"><h3>TLS Fingerprint Bypasser</h3><p>Evasion: Cloudflare, Akamai, AWS WAF</p><span class="status">● Active</span></div>
+      <div class="tool-card"><h3>CSRF Scanner</h3><p>Passive CSRF detection & token analysis</p><span class="status">● Active</span></div>
+      <div class="tool-card"><h3>JOSEPH</h3><p>JWT/JOSE pentesting — algorithm confusion</p><span class="status">● Active</span></div>
+      <div class="tool-card"><h3>WAF Bypass</h3><p>Header injection for WAF evasion</p><span class="status">● Active</span></div>
+      <div class="tool-card"><h3>Burp MCP</h3><p>AI-assisted analysis & automation</p><span class="status">● Active</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🧪 Red Team Toolkit</h2>
+    <table>
+      <tr><th>Tool</th><th>Version</th><th>Use Case</th><th>Status</th></tr>
+      <tr><td>Metasploit (msfconsole)</td><td>6.x</td><td>Exploitation, post-exploitation, C2</td><td>Active</td></tr>
+      <tr><td>BeEF</td><td>0.6.0.0</td><td>Browser exploitation, hook injection</td><td>Active</td></tr>
+      <tr><td>Garak</td><td>0.17.0</td><td>LLM vulnerability scanning (100+ probes)</td><td>Active</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>🤖 Automation Scripts</h2>
+    <table>
+      <tr><th>Script</th><th>Lines</th><th>Purpose</th></tr>
+      <tr><td>auto-workflow.sh</td><td>500+</td><td>Subdomain enum → port scan → service detection → vuln scan</td></tr>
+      <tr><td>auto-dork.sh</td><td>1000+</td><td>Multi-engine dorking (Google/Bing/GitHub/FTS)</td></tr>
+      <tr><td>lucene_injection_poc.py</td><td>—</td><td>Search injection → ACL bypass</td></tr>
+      <tr><td>csrf_poc.py</td><td>—</td><td>CSRF chain development</td></tr>
+      <tr><td>graphql_control.py</td><td>—</td><td>GraphQL authorization testing</td></tr>
+      <tr><td>turnstile-bypass.py</td><td>—</td><td>Cloudflare Turnstile weakness research</td></tr>
+      <tr><td>jwt_none_runner.py</td><td>—</td><td>JWT algorithm confusion testing</td></tr>
+    </table>
+    <p>All scripts: <a href="https://github.com/Rahadrab/SEC-SCRIPTS">github.com/Rahadrab/SEC-SCRIPTS</a></p>
+  </div>
+
+  <div class="section">
+    <h2>📊 Skills</h2>
+    <table>
+      <tr><th>Category</th><th>Details</th></tr>
+      <tr><td><b>Auth & Identity</b></td><td>OIDC, SAML 2.0, OAuth flows, session management, CSRF chains</td></tr>
+      <tr><td><b>Web AppSec</b></td><td>OWASP Top 10, API security, business logic, access control</td></tr>
+      <tr><td><b>WAF Evasion</b></td><td>Query-operator injection, method switching, Host-header routing, TLS fingerprint</td></tr>
+      <tr><td><b>Red Team</b></td><td>Metasploit, BeEF, Garak, Frida/Objection, MITRE ATT&CK</td></tr>
+      <tr><td><b>AI Security</b></td><td>LLM vulnerability scanning, prompt injection, Garak 0.17.0</td></tr>
+      <tr><td><b>Reporting</b></td><td>CWE/OWASP mapping, GDPR impact framing, structured evidence packages</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>💡 What Recruiters Say</h2>
+    <div class="quote">
+      "I built a full critical-bypass package, then proved to myself the endpoint was an SPA catch-all that returned the same response for any token — so I withdrew it. Verifying your own findings, even painful ones, is what makes a report trustworthy."
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📄 Profiles</h2>
+    <table>
+      <tr><th>Platform</th><th>Link</th></tr>
+      <tr><td>LinkedIn</td><td><a href="https://www.linkedin.com/in/rahadrab/" target="_blank">rahadrab</a></td></tr>
+      <tr><td>Intigriti</td><td><a href="https://app.intigriti.com/researcher/profile/rahadrab/" target="_blank">rahadrab</a></td></tr>
+      <tr><td>Bugcrowd</td><td><a href="https://bugcrowd.com/h/rahat_rab" target="_blank">rahat_rab</a></td></tr>
+      <tr><td>GitHub</td><td><a href="https://github.com/Rahadrab/PORTFOLIO" target="_blank">Rahadrab/PORTFOLIO</a></td></tr>
+      <tr><td>SEC-SCRIPTS</td><td><a href="https://github.com/Rahadrab/SEC-SCRIPTS" target="_blank">Rahadrab/SEC-SCRIPTS</a></td></tr>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p>All findings are sanitized. Platform/program names removed.</p>
+    <p>Built from Intigriti + Bugcrowd engagements, Jun–Aug 2026</p>
+    <p>&copy; 2026 Rahad Rabbani — Offensive Security Researcher</p>
+  </div>
+</body>
+</html>
