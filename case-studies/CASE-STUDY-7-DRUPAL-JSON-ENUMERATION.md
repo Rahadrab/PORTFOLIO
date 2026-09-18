@@ -144,7 +144,7 @@ Unauthenticated access to the `/jsonapi/user/user` endpoint allows an attacker t
 
 ## Triage Response & Recommendation
 
-**Triage Outcome:** RESOLVED — customer (Telstra Health) restricted the leaked information. Severity was upgraded from P3 to P2 during triage, indicating the program recognized the report's value beyond the initial submission.
+**Triage Outcome:** RESOLVED — customer restricted the leaked information. Severity was upgraded from P3 to P2 during triage, indicating the program recognized the report's value beyond the initial submission.
 
 **Analyst Recommendation:** "Welcome to the program! Thanks for this finding — the team was able to restrict the leaked information." This is the strongest VDP outcome: explicit program welcome + confirmed remediation. The reporter is now on the program's accepted-researcher list.
 
