@@ -2,12 +2,12 @@
 
 | Field | Value |
 |-------|-------|
-| **Severity** | High (CVSS 3.1 **8.1**) |
+| **Severity** | High (CVSS 3.1 **8.1**) as analysed — triaged **P5 / Informational** |
 | **CWE** | CWE-522 (Insufficiently Protected Credentials) / CWE-200 · transport: CWE-918 |
 | **OWASP** | A07:2021 + A10:2021 (SSRF as mechanism only) |
 | **VRT** | Sensitive Data Exposure → Disclosure of Secrets (primary); Server Security Misconfig (persist) |
 | **Surface** | Open-source Kafka/cluster admin UI (Aiven-Open/klaw) |
-| **Status** | Submitted Bugcrowd 2026-09-22 — `88090fa6-40f0-49b8-a9f3-6e159d7bed4d` (aiven-mbb-og) |
+| **Status** | Submitted Bugcrowd 2026-09-22 — `88090fa6-40f0-49b8-a9f3-6e159d7bed4d` · closed **2026-09-29** as **Duplicate** (Informational, P5) of a 2026-01-28 report covering the same endpoint |
 
 ---
 
@@ -91,11 +91,36 @@ Any unexpired token signed with the shared secret authenticates. Validation is s
 
 ## Results
 
-- **High** credential-bearing server request + **standing MITM** (CVSS 8.1)
+- **High** credential-bearing server request + **standing MITM** (CVSS 8.1 as analysed)
 - OOB network proof + JWT decode + config overwrite + cluster-api replay
 - Evidence pack: council verdict (incl. VRT lock), raw logs, 7 ordered screenshots, md5-matched vulnerable sources, listener scripts
 - Preconditions: authenticated `UPDATE_SERVERCONFIG`, non-blank cluster-api shared secret
 - Full technical report + artifacts held for **program submission** (Aiven-Open OSS P1)
+
+## Triage Response & Recommendation
+
+**Outcome:** closed **2026-09-29** as **Duplicate**, state *Informational*, P5, VRT
+*Server Security Misconfiguration → SSRF → External - Low impact* — against a report filed
+**2026-01-28** covering credential exfil through the very same endpoint.
+
+**Why I accepted it rather than contesting it:** the master predates this submission by seven
+months and covers the identical entry point and impact class. My own pre-submission notes had
+already flagged this endpoint as burned — *"any framing, including a CSRF-only reframe of the
+same endpoint, is high duplicate risk."* I filed anyway to test whether the persistence and
+no-credential halves were separable. Triage said no, and on the evidence they were right.
+
+**The part I'd keep:** a second pass after closure established the endpoint fires on a
+**cookie-only cross-site GET with no CSRF token** — a real browser, a logged-in session and
+nothing else exfiltrate the credential, three distinct `jti` across three captures. That chain
+is stronger than what was originally filed, and it is exactly the kind of material that becomes
+a *new* report only when the underlying endpoint is genuinely different.
+
+**Reporter takeaway:** a duplicate verdict against a same-endpoint master is not a judgement on
+your work — the report was reproducible and triage said so. It is a scope question that should
+have been settled before filing. Read the known-issues panel for the target's open report
+titles *first*; seven months of prior art on one endpoint was knowable in advance.
+
+---
 
 ## Remediation Delivered
 
