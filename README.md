@@ -173,6 +173,9 @@ Authenticated admin "test cluster API connectivity" flow accepted an arbitrary b
 ### [Case Study 10 — Unauthenticated Cross-Tenant Cache Write (permitAll + Shipped-Default Key)](case-studies/CASE-STUDY-10-CROSS-TENANT-CACHE-WRITE.md)
 Two defensible defaults that compose badly: the Spring Security `permitAll()` list carries `/resetMemoryCache/**` and `/cache/**` in the same bucket as `/js/**`, and the App2App service key ships with a non-empty hardcoded value. Forge the internal-service token → cache-reset endpoint accepts an attacker-chosen `tenantId` with no tenant comparison, reloading another tenant's users, teams and in-memory auth manager. **Triage:** Closed as Duplicate — methodology write-up, and a lesson in reading what the auth layer actually exempts.
 
+### [Case Study 11 — Blind SSRF via the Kafka Connect `env` Parameter](case-studies/CASE-STUDY-11-KAFKA-CONNECT-ENV-SSRF.md)
+`cluster-api` splits a caller-controlled `env` on commas, prepends `http://` and fires a `RestTemplate` at the result — no host allowlist. Pointing it at an attacker `host:port` makes the *server* send `POST /connectors` there (`User-Agent: Java/…` proves JVM origin). **This one is really about the corrections.** I filed six affected endpoints, an exfiltration claim and `AV:N`. Re-running my own claims found five endpoints never tested, the response body discarded (`processResponseBody` is status-only ⇒ **blind**), a 400 I'd misread as a path problem when it was a missing required parameter, and an actor model that didn't hold. I wrote the correction myself rather than let an analyst find them. **Triage:** Duplicate, P3 — put the corrections on the record instead of spending a slot contesting.
+
 ---
 
 ## What Recruiters Say
@@ -186,9 +189,9 @@ Two defensible defaults that compose badly: the Spring Security `permitAll()` li
 | Role Type | Attach |
 |-----------|--------|
 | Red Team / Offensive | Case Study 1 (ATO), Case Study 8 (Stored XSS → Admin ATO), Case Study 9 (Credential Leakage & Persistent MITM), Red Team Toolkit (Metasploit, BeEF, Garak) |
-| AppSec / Source Review | Case Study 9 (JWT exfil + persist), Case Study 10 (permitAll + hardcoded key, cross-tenant) |
+| AppSec / Source Review | Case Study 9 (JWT exfil + persist), Case Study 10 (permitAll + hardcoded key, cross-tenant), Case Study 11 (SSRF sink + self-verification) |
 | AI Security | Case Study 1 + Garak prompt injection testing |
-| Web AppSec / Pentest | Case Study 2 (Search Injection), Case Study 7 (Drupal/JSON:API) |
+| Web AppSec / Pentest | Case Study 2 (Search Injection), Case Study 7 (Drupal/JSON:API), Case Study 11 (SSRF) |
 
 **Rule:** CV + max 2 redacted PDFs, matched to role. Never attach raw evidence or program-named files.
 
