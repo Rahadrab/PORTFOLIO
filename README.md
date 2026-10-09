@@ -165,9 +165,13 @@ Enforcement iframe uses `postMessage()` with wildcard origin (`*`), exposing ses
 VDP — Drupal Installer Exposure (P3→P2) + JSON:API User Enumeration. **Triage:** RESOLVED — analyst said "Welcome to the program! Thanks for this finding — the team was able to restrict the leaked information." Severity upgraded P3→P2 during triage.
 
 ### [Case Study 8 — Stored XSS via Calculator API → Admin ATO](case-studies/CASE-STUDY-8-STORED-XSS-CALCULATOR-API.md)
+P2 Critical (CVSS ~9.8). Stored XSS in calculator API endpoint persisted in database, executed on admin pages, enabling full admin account takeover. What I keep from this one: my proof needed admin-panel access I wouldn’t force — ethics stays higher than any single report, so I stopped at the line and demoed safely instead (video PoC, 27 files, local sample). It still closed, and support replies left me waiting days between templates — that waiting is what made me stop working HackerOne. The mediation gate (3 valids in 3 months) can be impossible new. So to new researchers: don’t rage past lines that can hurt you — document clean, stack valids, walk standing.
 
 ### [Case Study 9 — Credential Leakage & Persistent MITM (Cluster-API JWT)](case-studies/CASE-STUDY-9-SSRF-CLUSTER-API-JWT.md)
-P2 Critical (CVSS ~9.8). Stored XSS in calculator API endpoint persisted in database, executed on admin pages, enabling full admin account takeover. What I keep from this one: my proof needed admin-panel access I wouldn’t force — ethics stays higher than any single report, so I stopped at the line and demoed safely instead (video PoC, 27 files, local sample). It still closed, and support replies left me waiting days between templates — that waiting is what made me stop working HackerOne. The mediation gate (3 valids in 3 months) can be impossible new. So to new researchers: don’t rage past lines that can hurt you — document clean, stack valids, walk standing.
+Authenticated admin "test cluster API connectivity" flow accepted an arbitrary base URL and issued a server-side request carrying a freshly minted cluster-API bearer JWT — no allowlist, no egress control. Exfiltrated the token to Burp Collaborator (7× interaction), then proved the successful probe **persisted** the attacker URL into core config as a standing MITM, and replayed the JWT against cluster-api for a 200. **Triage:** Submitted Bugcrowd 2026-09-22, CVSS 8.1.
+
+### [Case Study 10 — Unauthenticated Cross-Tenant Cache Write (permitAll + Shipped-Default Key)](case-studies/CASE-STUDY-10-CROSS-TENANT-CACHE-WRITE.md)
+Two defensible defaults that compose badly: the Spring Security `permitAll()` list carries `/resetMemoryCache/**` and `/cache/**` in the same bucket as `/js/**`, and the App2App service key ships with a non-empty hardcoded value. Forge the internal-service token → cache-reset endpoint accepts an attacker-chosen `tenantId` with no tenant comparison, reloading another tenant's users, teams and in-memory auth manager. **Triage:** Closed as Duplicate — methodology write-up, and a lesson in reading what the auth layer actually exempts.
 
 ---
 
@@ -182,6 +186,7 @@ P2 Critical (CVSS ~9.8). Stored XSS in calculator API endpoint persisted in data
 | Role Type | Attach |
 |-----------|--------|
 | Red Team / Offensive | Case Study 1 (ATO), Case Study 8 (Stored XSS → Admin ATO), Case Study 9 (Credential Leakage & Persistent MITM), Red Team Toolkit (Metasploit, BeEF, Garak) |
+| AppSec / Source Review | Case Study 9 (JWT exfil + persist), Case Study 10 (permitAll + hardcoded key, cross-tenant) |
 | AI Security | Case Study 1 + Garak prompt injection testing |
 | Web AppSec / Pentest | Case Study 2 (Search Injection), Case Study 7 (Drupal/JSON:API) |
 
