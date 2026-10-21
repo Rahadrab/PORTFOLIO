@@ -29,7 +29,7 @@ A WordPress-powered business website had its REST API endpoint (`/wp-json/`) ful
 
 ### Step 1: API Discovery
 
-Navigated to `https://target.com/wp-json/` in a standard browser. The full JSON response was immediate and required no authentication, cookies, or special headers.
+Navigated to `https://example.com/wp-json/` in a standard browser. The full JSON response was immediate and required no authentication, cookies, or special headers.
 
 **Typical response included:**
 - `namespaces` array listing all registered routes

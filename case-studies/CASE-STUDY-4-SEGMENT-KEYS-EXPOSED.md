@@ -30,8 +30,8 @@ A SaaS platform's client-side JavaScript bundles contained hardcoded Segment API
 ### Step 1: Key Extraction
 
 Segment Write Keys were discovered in main JavaScript bundles on two subdomains via source-code review and `grep` patterns:
-- **Key 1** on subdomain A: `[REDACTED-KEY-1]`
-- **Key 2** on subdomain B: `[REDACTED-KEY-2]`
+- **Key 1** on subdomain A: `REDACTED_KEY_1`
+- **Key 2** on subdomain B: `REDACTED_KEY_2`
 
 Both keys were confirmed present in minified/beautified source and extractable with simple pattern matching.
 
@@ -42,14 +42,14 @@ Both keys were tested against Segment's public API endpoints:
 ```bash
 # Test Key #1 with Identify endpoint
 curl -X POST "https://api.segment.io/v1/identify" \
-  -u "[REDACTED-KEY-1]:" \
+  -u "REDACTED_KEY_1:" \
   -H "Content-Type: application/json" \
   -d '{"userId":"REDACTED-TEST","traits":{"email":"test@test.com","role":"admin"}}'
 # Response: {"success": true}
 
 # Test Key #2 with Track endpoint
 curl -X POST "https://api.segment.io/v1/track" \
-  -u "[REDACTED-KEY-2]:" \
+  -u "REDACTED_KEY_2:" \
   -H "Content-Type: application/json" \
   -d '{"event":"Test Event","userId":"REDACTED-TEST","properties":{"test":true}}'
 # Response: {"success": true}

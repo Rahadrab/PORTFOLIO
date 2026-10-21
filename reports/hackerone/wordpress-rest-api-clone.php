@@ -6,7 +6,7 @@
  * This recreates the EXACT endpoint structure from REDACTED-COMPANY
  */
 
-$submissions_file = '/tmp/redacted_wp_real_submissions.json';
+$submissions_file = '$_SERVER['TMP_DIR'].'/redacted_wp_real_submissions.json'';
 $submissions = file_exists($submissions_file) ? json_decode(file_get_contents($submissions_file), true) : [];
 
 // Handle REST API request: POST /wp-json/sage/v1/calculator/submit

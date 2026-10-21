@@ -1,60 +1,43 @@
-# Red Team Tools — Installed & Verified
+# Red Team Capability
 
-## Cellular / Mobile Tracking
+Organised by what I can be brought in to do — not by what is installed on my box.
+Tooling is incidental to the results; the substance is always the code path, the reachable
+trust boundary, and whether the consequence is provable.
 
-| Tool | Purpose | Status | Install |
-|------|---------|--------|---------|
-| **horst** | WiFi monitoring, cell tower scanning | ✅ Working | `apt install horst` |
-| **aircrack-ng** | WiFi attacks, packet injection | ✅ Working | Pre-installed |
-| **wireshark** | Packet analysis, traffic inspection | ✅ Working | Pre-installed |
-| **stingwatch** | IMSI catcher detection | ✅ Cloned | `stingwatch` |
-| **mitmproxy** | Intercept location API calls | ✅ Working | Pre-installed |
-| **Frida/Objection** | Runtime instrumentation, location hooks | ✅ Working | Pre-installed |
+## Offensive Security
 
-## Exploitation
+| Area | What it covers |
+|------|----------------|
+| **Exploitation & post-exploitation** | Turning a proven weakness into a working path: privilege escalation, persistence, credential access, lateral movement |
+| **Client-side & browser-origin attacks** | XSS chains executing in an authenticated context, `postMessage`/origin flaws, token leakage into third-party frames, session and cookie theft |
+| **Network & wireless** | Traffic capture and analysis, radio reconnaissance, interception of mobile location APIs, runtime instrumentation of app traffic |
+| **AI / LLM security** | Adversarial testing of a model's instruction hierarchy — prompt injection, jailbreak, data extraction — and proving whether a mitigation actually works |
 
-| Tool | Purpose | Status |
-|------|---------|--------|
-| **Metasploit (msfconsole)** | Exploitation, post-exploitation, C2 | ✅ Working |
-| **BeEF-XSS** | Browser exploitation, hook injection | ✅ Working |
+## Application & Identity Security
 
-## AI Security
+| Area | What it covers |
+|------|----------------|
+| **Authentication** | OIDC, OAuth 2.0, SAML 2.0, session management, MFA flows, re-authentication gaps, account takeover chains |
+| **Authorization** | Role and scope enforcement, tenant isolation, IDOR, object-level and field-level access control, privilege-escalation chains |
+| **API security** | REST and GraphQL surfaces, schema introspection, batching/depth abuse, mass assignment, rate-limit and business-logic flaws |
+| **Source code review** | White-box analysis of OSS projects — dangerous defaults, hardcoded secrets, broken conditionals, deserialization, framework-specific misconfiguration (Spring Security, Liferay, Apache) |
+| **Cloud & infrastructure** | Object storage exposure, SSRF into cloud metadata, IAM misconfiguration, CI/CD secret exposure |
 
-| Tool | Purpose | Status |
-|------|---------|--------|
-| **Garak** | LLM vulnerability scanning (100+ probes) | ✅ Ready |
-| **Ollama secassist-hermes** | Local AI model (8B Llama) | ✅ Running |
+## What I actually do about it
 
-## Building
+- Read the code when the black-box signal is ambiguous, and prove the conclusion against the
+  running product.
+- Build the exploit chain to the point where the impact is demonstrable, then stop at the
+  line the program or the target draws.
+- Deliver a structured evidence package: root cause, sanitised reproduction, PoC, impact,
+  remediation.
+- **Verify my own claims.** Several of my reports ended with a correction I wrote myself
+  because re-running my own evidence contradicted what I had written. That discipline is the
+  part I would bring to a team.
 
-| Tool | Purpose | Status |
-|------|---------|--------|
-| **srsRAN** | Software-defined radio, cell tower simulation | ⚠️ Building |
+## Evidence
 
-## Running Commands
+Case studies with root cause, reproduction and outcomes: [`case-studies/`](case-studies/).
 
-```bash
-# Cellular tracking test
-sudo horst -i wlan0
-
-# WiFi packet capture
-sudo airodump-ng wlan0
-
-# Intercept location API
-mitmproxy --mode transparent
-
-# Frida location hook
-frida -U -f com.target.app -l location-hook.js
-
-# Run Garak
-run-garak.sh
-
-# Metasploit
-msfconsole
-
-# BeEF
-sudo beef-xss-start
-```
-
-## Screenshots
-All tests to be documented with screenshots and pushed to GitHub.
+*Sanitized — organisation and endpoint names removed. Full technical reports available on
+request under NDA.*

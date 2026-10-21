@@ -1,52 +1,31 @@
 # Red Team Toolkit
 
-Tools actively used in engagements. All verified and documented below.
+**This repo is about findings, not inventory.** The tools below are incidental — they cover
+the repetitive surface work so the time goes into analysis and proof. Where a tool appears in
+a case study it was in service of a specific hypothesis, and the result is what is written up.
 
-## Exploitation Frameworks
+## What the automation covers
 
-### Metasploit (msfconsole)
-- **Version:** 6.x
-- **Use:** Exploitation, post-exploitation, privilege escalation, C2
-- **Status:** Active — used in Monash engagement testing
-- **Modules:** Auxiliary, Exploit, Post, Payload, Encoder, NOP
-- **Techniques:** Search, use, set, exploit, run
+| Area | Purpose |
+|------|---------|
+| **Recon pipeline** | Subdomain enumeration, DNS resolution, HTTP probing, directory scanning, URL crawling, service fingerprinting, technology detection, JS analysis |
+| **Multi-engine dorking** | Search engines, GitHub code search, certificate-transparency logs, URL-scan and archive services, cloud-bucket and subdomain discovery |
+| **PoC generators** | CSRF chain generation with ready-to-serve HTML and cURL, search-query injection against Lucene/Elasticsearch backends, GraphQL authorization testing, JWT algorithm-confusion testing, Cloudflare Turnstile implementation review |
+| **Mobile & wireless** | Traffic capture and interception, radio reconnaissance, runtime instrumentation of app traffic |
 
-### BeEF (Browser Exploitation Framework)
-- **Version:** 0.6.0.0
-- **Use:** Client-side browser exploitation, hook injection, command execution
-- **Status:** Installed and tested on Kali
-- **Features:** Hook.js injection, command queue, REST API, WebSocket
-- **Port:** 3000 (HTTP), 61985 (WebSocket)
+Scripts are published separately at
+[github.com/Rahadrab/SEC-SCRIPTS](https://github.com/Rahadrab/SEC-SCRIPTS).
 
-## AI Security / LLM Red Team
+## Why there is no tool table here
 
-### Garak
-- **Version:** 0.17.0
-- **Use:** LLM vulnerability scanning — prompt injection, jailbreaks, data extraction
-- **Status:** Installed in ~/ai-redteam (py3.11 venv)
-- **Tests:** 100+ probe plugins across 15+ categories
-- **Categories:** prompt_injection, hallucination, encoding, overrefusal, etc.
-- **Run:** `python -m garak -t probes --target <model>`
+A list of installed tools tells a hiring manager nothing they can act on — they cannot tell
+whether the person holding it found a real vulnerability. The findings in
+[`case-studies/`](../case-studies/) are the evidence: what was wrong, how it was proven, what
+the consequence was, and — in three cases — what I got wrong and corrected myself.
 
-## Automation Scripts
+Each case study names the tools it needed at the point of use.
 
-| Script | Lines | Purpose |
-|--------|-------|---------|
-| `auto-workflow.sh` | 500+ | Subdomain enum → port scan → service detection → tech fingerprint → vuln scan |
-| `auto-dork.sh` | 1000+ | Multi-engine dorking (Google/Bing/DuckDuckGo/GitHub) |
-| `lucene_injection_poc.py` | — | Search injection → ACL bypass |
-| `csrf_poc.py` | — | CSRF chain development |
-| `graphql_control.py` | — | GraphQL authorization testing |
-| `turnstile-bypass.py` | — | Cloudflare Turnstile weakness |
-| `jwt_none_runner.py` | — | JWT algorithm confusion |
+---
 
-**All scripts:** [github.com/Rahadrab/SEC-SCRIPTS](https://github.com/Rahadrab/SEC-SCRIPTS)
-
-## Methodology: Tool → Finding → Evidence
-
-```
-Recon (auto-workflow.sh) → Discovery (manual mapping) → Exploitation (msfconsole/BeEF)
-→ Validation (Garak for AI/LLM) → Reporting (CWE/OWASP mapped) → Evidence Package
-```
-
-All findings delivered as structured evidence: root cause, sanitized reproduction, PoC, impact, remediation.
+*Sanitized — organisation and endpoint names removed. Full technical reports available on
+request under NDA.*

@@ -1,20 +1,34 @@
-# Case Study 2 — Search Injection → ACL Bypass + Health Data Exposure
+# Case Study 2 — Search Injection → Scope Bypass
 
 | Field | Value |
 |-------|-------|
 | **Severity** | P2 |
 | **CWE** | CWE-200 (Exposure of Sensitive Information) / CWE-284 (Improper Access Control) |
-| **Impact** | GDPR Art. 9 — health data exposure (penalty ceiling €20M / 4% global turnover) |
+| **Impact** | Unauthenticated access to the global CMS index — scope enforcement absent on the search surface |
 | **Surface** | Public search endpoint of a national hospital group's CMS portal |
-| **Status** | Packaged — evidence package delivered |
+| **Status** | Closed by the program as not applicable — see the correction below |
+
+> **Correction on the record (2026-10-21).** An earlier version of this write-up claimed
+> "5,940 internal documents", "mortuary forms", "supplier terms", "governing-board docs" and
+> "GDPR Art. 9 health data exposure". **Re-checking the captures showed those do not hold.**
+> The 5,940 was a **result count**, not a document count; the content behind it was the
+> hospital's **public** site content (cost estimates, clinic pages, patient guides, an open
+> webinar); "mortuary forms" and "governing-board documents" appear in **no capture at all**,
+> and "supplier terms" appear in the *public*-scope capture. The program closed the report as
+> not applicable on exactly this basis. The claims below are what the evidence actually
+> supports. Everything the technique *did* establish — the WAF bypass, the scope differential,
+> the field enumeration — was reproducible and is unchanged.
 
 ---
 
 ## Problem
 
-A hospital group's public website search was backed by Lucene/Elasticsearch. The public UI showed only the guest scope, but the search endpoint accepted raw query-operator syntax. A WAF filtered obvious injection attempts.
+A hospital group's public website search was backed by Lucene/Elasticsearch. The public UI showed only the guest scope, but the search endpoint accepted raw query-operator syntax **and an explicit scope identifier**. A WAF filtered obvious injection attempts.
 
-**5,940 internal documents were exposed** — including pediatric psychiatry pages, surgical cost PDFs, mortuary forms, and supplier terms.
+**5,940 results were returned for a query that returned 5 in guest scope.** The content behind
+them was the hospital's public web content — care pages, cost estimates, patient guides, an
+event invitation — but it was served by the **global** CMS index rather than the guest scope
+the public site is meant to expose.
 
 ## Attack Chain
 
@@ -35,11 +49,12 @@ A hospital group's public website search was backed by Lucene/Elasticsearch. The
   - Method switching: POST → GET (WAF didn't filter GET)
 - Once through, all special query operators became usable
 
-### Step 2: ACL Bypass via Scope Parameter
+### Step 2: Scope Bypass via Scope Parameter
 - Endpoint accepted an explicit scope identifier
 - Passing the global scope (`scopeGroupId:0`) instead of guest scope returned the **entire CMS index**
-- **5,940 results** for a keyword that returned 5 in public scope
-- Internal documents exposed: clinical pages, surgical PDFs, mortuary forms, governing-board docs, supplier terms
+- **5,940 results** for a keyword that returned 5 in public scope — a reproducible differential
+- Content was public-site material reached through the global index; the security defect is the
+  **missing scope enforcement on the search surface**, not the sensitivity of the material
 
 ### Step 3: User Enumeration via Field Syntax
 - Field queries (`username:*`, `firstName:*`, `emailAddress:*`) showed the `username` field was indexed and anonymously queryable
@@ -47,10 +62,17 @@ A hospital group's public website search was backed by Lucene/Elasticsearch. The
 
 ## Results
 
-- **Anonymous read of permission-gated internal hospital documents**
-- Health-related content (child psychiatry, treatment costs) on a public endpoint = **GDPR Art. 9 exposure**
-- User-field enumeration on indexed user store
+- **Unauthenticated reach of the global CMS index** — 5,940 vs 5 results, reproduced across
+  multiple scope ids and on two separate runs
+- **User-field enumeration** on the indexed user store (`username:*` → 1 result, 0 for every
+  other field)
 - Full evidence package: WAF-bypass recap, scoped-vs-global comparison, field-query proof
+
+**The finding that stands:** the search surface does not enforce scope server-side, so a
+client-supplied scope id selects the index. On a site where the global index holds
+non-guest material, that is an access-control defect. On this site the material proved to be
+public, which is why the program closed it as not applicable — the technique reproduced, the
+impact did not.
 
 ## Remediation Delivered
 

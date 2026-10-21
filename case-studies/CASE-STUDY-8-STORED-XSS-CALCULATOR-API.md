@@ -33,7 +33,7 @@ Crafted a malicious calculator query string that, when submitted to the API, sto
 
 ```
 POST /calculator/api HTTP/1.1
-Host: target.com
+Host: example.com
 Content-Type: application/x-www-form-urlencoded
 
 expression=<svg/onload=alert(1)>&timestamp=1234567890
@@ -129,7 +129,7 @@ Developed the full account takeover chain:
 
 ```http
 POST /calculator/api HTTP/1.1
-Host: target.com
+Host: example.com
 Content-Type: application/x-www-form-urlencoded
 
 expression=%3Csvg/onload%3Dalert(%27XSS%27)%3E&submit=Calculate
@@ -273,7 +273,7 @@ In direct response to the Round 2 wrong asks, the reporter built a **complete Wo
 > *"I've attached 3 screenshots showing: Screenshot 1: Full simulated admin view with XSS payload rendered; Screenshot 2: XSS alert box visible (execution proof); Screenshot 3: Technical explanation and attack chain."*
 
 **4. TECHNICAL WRITEUP** — `xss-admin-response.md`
-> *"Please see the detailed technical explanation in the attached file, which includes: Complete attack chain (storage -> retrieval -> execution); Why XSS executes in admin context; Why we can't show real admin panel (external tester limitation); Similar accepted reports (H1 #126099, #633231, #3400506); Impact assessment (HIGH severity); Recommended fixes."*
+> *"Please see the detailed technical explanation in the attached file, which includes: Complete attack chain (storage -> retrieval -> execution); Why XSS executes in admin context; Why we can't show real admin panel (external tester limitation); Similar accepted reports (three similar accepted reports on the same platform (references redacted)); Impact assessment (HIGH severity); Recommended fixes."*
 
 **5. WORDPRESS REST API CLONE** — [`reports/hackerone/wordpress-rest-api-clone.php`](reports/hackerone/wordpress-rest-api-clone.php)
 > Exact replica of `/wp-json/sage/v1/calculator/submit` endpoint and admin interface (`/wp-admin/admin.php?page=sage-calculator`). WordPress-style JSON response with `X-WP-DoingItWrong` header. Admin panel with wpadminbar, adminmenu, wp-list-table — full visual fidelity. Vulnerable code intentionally included — no sanitization, no `esc_html()` on output (same as target).

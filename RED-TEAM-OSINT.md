@@ -34,13 +34,13 @@ holehe [REDACTED-EMAIL]
 phoneinfoga +8801XXXXXXXX
 
 # DNS recon
-dnsrecon -d [REDACTED-DOMAIN]
+dnsrecon -d example.com
 
 # Subdomain enumeration
-sublist3r -d [REDACTED-DOMAIN]
+sublist3r -d example.com
 
 # Email/subdomain gathering
-theHarvester -d [REDACTED-DOMAIN] -l 500 -b google
+theHarvester -d example.com -l 500 -b google
 ```
 
 All tools: simple, one-command, effective.

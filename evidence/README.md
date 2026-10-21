@@ -32,7 +32,7 @@
 | `findcellid-robi-search.png` | findcellid.com with Robi carrier info |
 | `cellmapper-bangladesh-banglalink.png` | CellMapper Bangladesh map |
 | `cellmapper-net-overview.png` | CellMapper overview |
-| `opencellid-bangladesh.png` | OpenCellID attempt (403) |
+| `opencellid-registration.png` | OpenCellID registration form (attempt) |
 
 ### Google Maps Geolocation API
 - **Most precise approach:** Takes MCC/MNC/LAC/CellID → returns lat/lon + accuracy

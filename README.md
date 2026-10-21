@@ -10,7 +10,7 @@
 |----------|---------|-------|
 | **High** | Account Takeover via Missing Re-Authentication (OIDC + GraphQL) | CWE-306 / CWE-620 |
 | **High** | Credential Leakage & Persistent MITM — Cluster-API JWT Exfil (CVSS 8.1) | CWE-522 / CWE-200 |
-| **P2** | Search-Query Injection → ACL Bypass + Health Data Exposure | CWE-200 / CWE-284 |
+| **P2** | Search-Query Injection → Scope Bypass (5,940 vs 5 results) | CWE-200 / CWE-284 |
 | **P2** | WAF Bypass + reCAPTCHA v3 Bypass (4-route cross-product) | WAF Evasion |
 | **P3** | CVE-2021-43264 — Unauthenticated Path Traversal (EOL Platform) | CWE-22 |
 | **Clean** | SAML 2.0 Audit across 5 enterprise IdPs (25+ federation endpoints) | SAML/SSO |
@@ -31,7 +31,6 @@
 | **Auth & Identity** | OIDC, SAML 2.0, session management, OAuth flows, CSRF chains |
 | **Web AppSec** | OWASP Top 10, API security, business logic, access control |
 | **WAF Evasion** | Query-operator injection, method switching, Host-header routing |
-| **Tooling** | Python, Bash, Burp Suite, Nmap, Metasploit, Kali Linux |
 | **Reporting** | CWE/OWASP mapping, GDPR impact framing, structured evidence packages |
 | **Frameworks** | MITRE ATT&CK, PTES, OWASP Testing Guide |
 
@@ -41,93 +40,45 @@
 
 | Phase | Description |
 |-------|-------------|
-| **Recon** | Automated subdomain enumeration, port scanning, service fingerprinting |
-| **Dorking** | Google/Bing/GitHub dorking for exposed endpoints, secrets, and API documentation |
+| **Recon** | Subdomain enumeration, port scanning, service fingerprinting, dorking for exposed endpoints and secrets |
 | **Discovery** | Manual endpoint mapping, API surface analysis, technology stack identification |
-| **Vulnerability Research** | Auth logic analysis, access control testing, business logic evaluation |
+| **Vulnerability Research** | Auth logic analysis, access control testing, business logic evaluation, source-level review of dangerous defaults |
 | **Exploitation** | PoC development, exploit chain construction, impact validation |
 | **Reporting** | CWE/OWASP mapping, GDPR impact framing, structured evidence packages |
 
-**Automation toolkit:**
-- `auto-workflow.sh` — 500+ line recon pipeline (subdomain enum → port scan → service detection → tech fingerprint)
-- `auto-dork.sh` — 1000+ line Google/Bing/GitHub dorking automation
-- Custom Python/Bash scripts for CSRF chains, search injection, session capture, OIDC flows
+**What the tooling is for.** Automation covers the repetitive surface work — enumeration,
+dorking, request templating — so the hours go into analysis and proof. Every finding below
+came from reading an auth check, an access-control decision, or a default value and then
+proving the consequence. Where a scanner or framework was involved it was incidental to the
+result; the substance is always the code path and whether it is reachable.
 
-All PoCs developed through AI-assisted generation, architected and validated by me.
-
----
-
-## Automation & Tooling
-
-| Script | Purpose |
-|--------|---------|
-| [`auto-workflow.sh`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/auto-workflow.sh) | 500+ line recon pipeline — subdomain enum, DNS resolution, HTTP probing, directory scanning, URL crawling, vuln scanning, SQLi testing, JS analysis, OIDC discovery, GraphQL/S3/CORS testing, nmap, CMS scanning |
-| [`auto-dork.sh`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/auto-dork.sh) | 1000+ line multi-engine dorking — Google, Bing, DuckDuckGo, GitHub code search, InternetDB/crt.sh, Wayback Machine, AlienVault OTX, FOFA, URLScan.io, cloud bucket enumeration, subdomain dorking |
-| [`lucene_injection_poc.py`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/lucene_injection_poc.py) | Search query injection → ACL bypass exploitation for Elasticsearch/Lucene backends |
-| [`csrf_poc.py`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/csrf_poc.py) | CSRF chain development with auto-generated PoC HTML and cURL commands |
-| [`graphql_control.py`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/graphql_control.py) | GraphQL authorization testing — introspection, depth limiting, batching, info disclosure |
-| [`turnstile-bypass.py`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/turnstile-bypass.py) | Cloudflare Turnstile implementation weakness research |
-| [`jwt_none_runner.py`](https://github.com/Rahadrab/SEC-SCRIPTS/blob/master/jwt_none_runner.py) | JWT algorithm confusion testing — none algorithm, HS256/RS256 confusion, key injection |
-
-All scripts: [github.com/Rahadrab/SEC-SCRIPTS](https://github.com/Rahadrab/SEC-SCRIPTS)
+**Some public PoC tooling** (recon/dorking automation, plus generators for CSRF chains, search
+injection, GraphQL authorization testing and JWT algorithm confusion) is published separately
+at [github.com/Rahadrab/SEC-SCRIPTS](https://github.com/Rahadrab/SEC-SCRIPTS).
 
 ---
 
-## Burp Suite Extensions (Active)
+## Red Team Capability
 
-Professional-grade extensions for advanced testing — not the default suite.
+What I can be brought in to do — organised by outcome, not by tool.
 
-| Extension | Purpose | Category |
-|-----------|---------|----------|
-| **Param Miner** | Discovers hidden, unlinked parameters — web cache poisoning, unlinked param injection | Recon |
-| **Active Scan++** | Enhanced active scanner with 50+ additional checks beyond Burp default | Scanning |
-| **TLS Fingerprint Bypasser** | Mutates TLS ciphers to bypass bot detection (Cloudflare, Akamai, AWS WAF) | WAF Bypass |
-| **CSRF Scanner** | Passive CSRF detection — analyzes tokens, checks for missing validation | Auth Testing |
-| **JOSEPH** | JOSE (JWT/JWS/JWE/JOSE) pentesting helper — algorithm confusion, key injection | Auth/JWT |
-| **WAF Bypass** | Adds headers to all requests to bypass WAF products | WAF Bypass |
-| **Burp MCP** | MCP server integration — AI-assisted analysis and automation | AI/Automation |
+| Capability | What it means in practice | Evidence |
+|------------|---------------------------|----------|
+| **Exploitation & post-exploitation** | Turning a proven weakness into a working path: privilege escalation, persistence, credential access, lateral movement | CS1 (ATO), CS8 (Stored XSS → admin ATO), CS9 (JWT exfil → persistent MITM) |
+| **Client-side & browser-origin attacks** | XSS chains that execute in an authenticated context, postMessage/origin flaws, token leakage into third-party frames | CS6 (postMessage wildcard origin), CS8 (stored XSS → admin ATO) |
+| **AI / LLM security** | Adversarial testing of a model's instruction hierarchy — prompt injection, jailbreak, data extraction, and *proving the mitigation actually works* | [Local LLM prompt-injection hardening](case-studies/GARAK-LOCAL-HARDENING.md) |
+| **Source-level review** | Reading an application to find the missing check, the dangerous default, the broken condition — then proving it against the running product | CS9, CS10, CS11 |
+| **Access control & data isolation** | Tenant boundaries, scope filters, role checks that aren't enforced on the API path | CS2 (ACL bypass), CS4 (exposed keys), CS10 (cross-tenant cache write) |
+| **Reporting that survives triage** | Root cause, sanitised repro, honest severity, and a written record of my own corrections | CS8, CS9, CS11 (three self-issued corrections) |
 
-**These are not default Burp extensions.** Each one fills a specific gap in the standard toolset. Combined, they enable:
-- Hidden parameter discovery → cache poisoning → data exposure chains
-- TLS fingerprint evasion → WAF bypass → deeper scope access
-- JWT/JOSE algorithm confusion → auth bypass
-- AI-assisted analysis → faster triage
-
----
-
-## Red Team Toolkit
-
-Tools actively deployed in engagements — verified and operational.
-
-### Exploitation Frameworks
-
-| Tool | Version | Use Case | Status |
-|------|---------|----------|--------|
-| **Metasploit (`msfconsole`)** | 6.x | Exploitation, post-exploitation, privilege escalation, C2 | Active |
-| **BeEF (`beef-xss`)** | 0.6.0.0 | Browser exploitation, hook injection, client-side command execution | Active |
-
-**Metasploit modules:** Auxiliary, Exploit, Post, Payload, Encoder, NOP — full exploitation chain: search → use → set → exploit.
-
-**BeEF features:** Hook.js injection, command queue, REST API, WebSocket (port 3000/61985), browser-side RCE.
-
-### AI Security / LLM Red Team
-
-| Tool | Version | Use Case | Status |
-|------|---------|----------|--------|
-| **Garak** | 0.17.0 | LLM vulnerability scanning — prompt injection, jailbreaks, data extraction | Active |
-
-**Garak probes:** 100+ plugins across 15+ categories — prompt_injection, hallucination, encoding, overrefusal, encoding, etc.
-
-**Run:** `python -m garak -t probes --target <model>`
-
-### Methodology: Tool → Finding → Evidence
+**Method: Finding → Evidence**
 
 ```
-Recon (auto-workflow.sh) → Discovery (manual mapping) → Exploitation (msfconsole/BeEF)
-→ WAF Bypass (Burp extensions) → Validation (Garak for AI/LLM) → Reporting (CWE/OWASP mapped) → Evidence Package
+Recon → Discovery → Vulnerability research → Exploitation → Impact validation → Evidence package
 ```
 
-All findings delivered as structured evidence: root cause, sanitized reproduction, PoC, impact, remediation.
+Every finding is delivered as structured evidence: root cause, sanitised reproduction, PoC,
+impact, remediation.
 
 ---
 
@@ -188,9 +139,9 @@ Two defensible defaults that compose badly: the Spring Security `permitAll()` li
 
 | Role Type | Attach |
 |-----------|--------|
-| Red Team / Offensive | Case Study 1 (ATO), Case Study 8 (Stored XSS → Admin ATO), Case Study 9 (Credential Leakage & Persistent MITM), Red Team Toolkit (Metasploit, BeEF, Garak) |
+| Red Team / Offensive | Case Study 1 (ATO), Case Study 8 (Stored XSS → Admin ATO), Case Study 9 (Credential Leakage & Persistent MITM) |
 | AppSec / Source Review | Case Study 9 (JWT exfil + persist), Case Study 10 (permitAll + hardcoded key, cross-tenant), Case Study 11 (SSRF sink + self-verification) |
-| AI Security | Case Study 1 + Garak prompt injection testing |
+| AI Security | [Local LLM prompt-injection hardening](case-studies/GARAK-LOCAL-HARDENING.md) |
 | Web AppSec / Pentest | Case Study 2 (Search Injection), Case Study 7 (Drupal/JSON:API), Case Study 11 (SSRF) |
 
 **Rule:** CV + max 2 redacted PDFs, matched to role. Never attach raw evidence or program-named files.
