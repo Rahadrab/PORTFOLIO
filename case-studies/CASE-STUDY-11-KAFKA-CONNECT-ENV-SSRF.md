@@ -7,7 +7,7 @@
 | **OWASP** | A10:2021 — Server-Side Request Forgery |
 | **VRT** | Broken Access Control → Privilege Escalation (as triage-set) |
 | **Surface** | Open-source Kafka/cluster admin UI (Aiven-Open/klaw) — `cluster-api` module |
-| **Status** | Submitted 2026-09-29 — **Duplicate**, P3, Unresolved · self-correction filed |
+| **Status** | Submitted 2026-09-29 — **Duplicate**, P3, Unresolved · triaged as a valid issue (duplicate of an earlier same-endpoint-class report) · self-correction issued in this write-up |
 
 ---
 
@@ -105,12 +105,21 @@ is never written into the return value. So: request confirmed out, **no content 
 ## What I Got Wrong — and Corrected Before Being Asked
 
 I filed this with six affected endpoints, an exfiltration claim, and `AV:N`. On re-verification
-all three were wrong. I wrote the correction myself rather than let an analyst find them.
+all three were wrong. I published the correction in this write-up rather than leave a claim
+standing that my own evidence did not support.
 
 **1. Five of six endpoints were never tested.**
 My own enumeration notes recorded `updateConnector`, `deleteConnector`, `connector/restart`,
 `pause` and `resume` as **"Not tested"**. Listing untested routes as affected is not evidence —
 "probably the same way" is a hypothesis, not a result. **Proven endpoints: one.**
+
+*I stopped there deliberately, and it was a triage judgement, not a testing one.* The submission
+had already been triaged as a valid issue and closed as a duplicate of an earlier report on the
+same endpoint class, so further endpoint enumeration could not change the outcome — a private
+engagement would have had a different incentive structure and I would have worked each route
+to a proof. **The standard I hold is the engagement, not the bounty.** What I owe a customer is
+a proven chain, and the honest thing in a bounty context is to say which endpoints I proved
+rather than pad the list with untested ones.
 
 **2. The exfiltration claim was false.** I read `if (is2xxSuccessful()) return ApiResponse.SUCCESS`
 and stopped — I did not follow the fall-through to `processResponseBody`, which is status-only.

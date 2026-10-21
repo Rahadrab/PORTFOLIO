@@ -10,6 +10,7 @@
 |----------|---------|-------|
 | **High** | Account Takeover via Missing Re-Authentication (OIDC + GraphQL) | CWE-306 / CWE-620 |
 | **High** | Credential Leakage & Persistent MITM — Cluster-API JWT Exfil (CVSS 8.1) | CWE-522 / CWE-200 |
+| **Critical** | Authorization Gate That Never Denies — `validateRole()` Boolean Logic Flaw | CWE-480 / CWE-863 |
 | **P2** | Search-Query Injection → Scope Bypass (5,940 vs 5 results) | CWE-200 / CWE-284 |
 | **P2** | WAF Bypass + reCAPTCHA v3 Bypass (4-route cross-product) | WAF Evasion |
 | **P3** | CVE-2021-43264 — Unauthenticated Path Traversal (EOL Platform) | CWE-22 |
@@ -19,6 +20,8 @@
 | **P2** | postMessage Wildcard Origin → Session Token Leak | CWE-201 / CWE-942 |
 | **P2** | Stored XSS via Calculator API → Admin ATO | CWE-79 / CWE-352 |
 | **P2** | Drupal Installer + JSON:API Enumeration | CWE-200 / CWE-284 |
+| **P2** | Unauthenticated Username Oracle via Self-Registration | CWE-200 / CWE-204 |
+| **P2** | Cross-Tenant User-Record Creation via Request-Body `tenantId` | CWE-639 / CWE-284 |
 
 > All findings delivered as structured evidence packages: root cause, sanitized reproduction, PoC, impact, remediation. Full technical reports available on request under NDA. Bug bounty reports available in [`reports/`](reports/) directory.
 
@@ -104,7 +107,7 @@ Lucene/Elasticsearch injection bypassing WAF + scope controls. Exposed 5,940 int
 Verified unauthenticated arbitrary `.html` file read on EOL university platform. Version-confirmed vulnerable, relative + absolute PoC chains.
 
 ### [Case Study 4 — Segment API Keys Exposed](case-studies/CASE-STUDY-4-SEGMENT-KEYS-EXPOSED.md)
-Two Segment Write Keys exposed in client-side JavaScript, both tested with `{"success": true}` API responses. Enables fake analytics injection and data corruption. **Triage:** RESOLVED/APPROVED — analyst validated independent verification work and closed as RESOLVED.
+Two Segment Write Keys exposed in client-side JavaScript, both tested with `{"success": true}` API responses. Enables fake analytics injection and data corruption. **Triage:** Duplicate (closed) — the receiving analyst independently validated the finding and confirmed the keys were live; closed as a duplicate because an earlier report for the same issue already existed.
 
 ### [Case Study 5 — WordPress REST API Exposed](case-studies/CASE-STUDY-5-WORDPRESS-REST-API.md)
 Unauthenticated `/wp-json/` endpoint exposure on production subdomain. **Triage:** Informative — analyst said "keep submitting findings" and acknowledged the report.
@@ -125,7 +128,16 @@ Authenticated admin "test cluster API connectivity" flow accepted an arbitrary b
 Two defensible defaults that compose badly: the Spring Security `permitAll()` list carries `/resetMemoryCache/**` and `/cache/**` in the same bucket as `/js/**`, and the App2App service key ships with a non-empty hardcoded value. Forge the internal-service token → cache-reset endpoint accepts an attacker-chosen `tenantId` with no tenant comparison, reloading another tenant's users, teams and in-memory auth manager. **Triage:** Closed as Duplicate — methodology write-up, and a lesson in reading what the auth layer actually exempts.
 
 ### [Case Study 11 — Blind SSRF via the Kafka Connect `env` Parameter](case-studies/CASE-STUDY-11-KAFKA-CONNECT-ENV-SSRF.md)
-`cluster-api` splits a caller-controlled `env` on commas, prepends `http://` and fires a `RestTemplate` at the result — no host allowlist. Pointing it at an attacker `host:port` makes the *server* send `POST /connectors` there (`User-Agent: Java/…` proves JVM origin). **This one is really about the corrections.** I filed six affected endpoints, an exfiltration claim and `AV:N`. Re-running my own claims found five endpoints never tested, the response body discarded (`processResponseBody` is status-only ⇒ **blind**), a 400 I'd misread as a path problem when it was a missing required parameter, and an actor model that didn't hold. I wrote the correction myself rather than let an analyst find them. **Triage:** Duplicate, P3 — put the corrections on the record instead of spending a slot contesting.
+`cluster-api` splits a caller-controlled `env` on commas, prepends `http://` and fires a `RestTemplate` at the result — no host allowlist. Pointing it at an attacker `host:port` makes the *server* send `POST /connectors` there (`User-Agent: Java/…` proves JVM origin). **This one is really about the corrections.** I filed six affected endpoints, an exfiltration claim and `AV:N`. Re-running my own claims found five endpoints never tested, the response body discarded (`processResponseBody` is status-only ⇒ **blind**), a 400 I'd misread as a path problem when it was a missing required parameter, and an actor model that didn't hold — and I published the correction in the case study rather than leave claims my own evidence didn't support. **Triage:** Duplicate, P3 — the finding was triaged as valid; I put the corrections on the record instead of spending a slot contesting.
+
+### [Case Study 12 — Authorization Gate That Never Denies: `validateRole()` Boolean Logic Flaw](case-studies/CASE-STUDY-12-VALIDATEROLE-AUTH-BYPASS.md)
+The role check throws only when **all three** conditions are true — user missing **and** token invalid **and** role absent. Any one of them being false lets the request through, so a valid user with the wrong role, a valid token, or a present role each defeats the check on its own. Confirmed by source analysis at the upstream release (`&&` chain present, tree clean vs upstream). **Never submitted, never triaged** — the number is my own analysis rating, not a verdict. Includes the lesson that a locally-applied patch had made the code *look* fixed, and only `git diff` revealed it was not upstream.
+
+### [Case Study 13 — Unauthenticated Username Oracle via Self-Registration](case-studies/CASE-STUDY-13-UNAUTH-USER-ENUMERATION.md)
+The self-registration endpoint sits in the `permitAll` list, and its response distinguishes an existing username from a fresh one — so an unauthenticated caller can map valid accounts. Reproduced live against a local instance of the open-source product with **no credentials**. **This one is also about a correction:** my first write-up claimed it enumerated *usernames and email addresses*. The code compares an existing user's **username** against the submitted mailid, so it is a second username probe and **not** an email oracle — the write-up reflects the code, and says so.
+
+### [Case Study 14 — Cross-Tenant User-Record Creation via Request-Body `tenantId`](case-studies/CASE-STUDY-14-CROSS-TENANT-USER-CREATION.md)
+The endpoint *is* permission-gated, so this is not an unauthenticated flaw — it is a horizontal, cross-tenant authorization bypass. The service trusts a non-zero `tenantId` from the request body and never compares it to the caller's own tenant, so a user-creation admin in one tenant can write a user record into another. Confirmed by source analysis; **no live request was ever run**. The write-up explicitly declines the "tenant takeover" claim — a superadmin guard blocks exactly that — and states the impact floor it actually reaches.
 
 ---
 
@@ -139,10 +151,10 @@ Two defensible defaults that compose badly: the Spring Security `permitAll()` li
 
 | Role Type | Attach |
 |-----------|--------|
-| Red Team / Offensive | Case Study 1 (ATO), Case Study 8 (Stored XSS → Admin ATO), Case Study 9 (Credential Leakage & Persistent MITM) |
-| AppSec / Source Review | Case Study 9 (JWT exfil + persist), Case Study 10 (permitAll + hardcoded key, cross-tenant), Case Study 11 (SSRF sink + self-verification) |
+| Red Team / Offensive | Case Study 1 (ATO), Case Study 8 (Stored XSS → Admin ATO), Case Study 9 (Credential Leakage & Persistent MITM), Case Study 12 (authorization gate that never denies) |
+| AppSec / Source Review | Case Study 9 (JWT exfil + persist), Case Study 10 (permitAll + hardcoded key, cross-tenant), Case Study 11 (SSRF sink + self-verification), Case Study 12 (logic flaw in the authz gate), Case Study 14 (cross-tenant write) |
 | AI Security | [Local LLM prompt-injection hardening](case-studies/GARAK-LOCAL-HARDENING.md) |
-| Web AppSec / Pentest | Case Study 2 (Search Injection), Case Study 7 (Drupal/JSON:API), Case Study 11 (SSRF) |
+| Web AppSec / Pentest | Case Study 2 (Search Injection), Case Study 7 (Drupal/JSON:API), Case Study 11 (SSRF), Case Study 13 (unauthenticated username oracle) |
 
 **Rule:** CV + max 2 redacted PDFs, matched to role. Never attach raw evidence or program-named files.
 
