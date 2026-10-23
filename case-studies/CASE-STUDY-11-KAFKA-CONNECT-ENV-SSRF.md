@@ -7,7 +7,7 @@
 | **OWASP** | A10:2021 — Server-Side Request Forgery |
 | **VRT** | Broken Access Control → Privilege Escalation (as triage-set) |
 | **Surface** | Open-source Kafka/cluster admin UI (Aiven-Open/klaw) — `cluster-api` module |
-| **Status** | Submitted 2026-09-29 — **Duplicate**, P3, Unresolved · triaged as a valid issue (duplicate of an earlier same-endpoint-class report) · self-correction issued in this write-up |
+| **Status** | Submitted 2026-09-29 — triaged as a valid P3 issue; closed as **Duplicate** because an earlier same-endpoint-class report had priority · self-correction issued in this write-up |
 
 ---
 

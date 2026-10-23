@@ -7,7 +7,7 @@
 | **OWASP** | A07:2021 + A10:2021 (SSRF as mechanism only) |
 | **VRT** | Sensitive Data Exposure → Disclosure of Secrets (primary); Server Security Misconfig (persist) |
 | **Surface** | Open-source Kafka/cluster admin UI (Aiven-Open/klaw) |
-| **Status** | Submitted Bugcrowd 2026-09-22 — `88090fa6-40f0-49b8-a9f3-6e159d7bed4d` · closed **2026-09-29** as **Duplicate** (Informational, P5) of a 2026-01-28 report covering the same endpoint |
+| **Status** | Submitted Bugcrowd 2026-09-22 — `88090fa6-40f0-49b8-a9f3-6e159d7bed4d` · finding reproduced; closed **2026-09-29** as **Duplicate** (Informational, P5) because a 2026-01-28 report covered the same endpoint |
 
 ---
 

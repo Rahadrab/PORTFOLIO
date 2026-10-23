@@ -2,12 +2,12 @@
 
 | Field | Value |
 |-------|-------|
-| **Severity** | P3 (as triaged) — closed as Duplicate |
+| **Severity** | P3 (as triaged) — finding demonstrated; closed as Duplicate because an earlier report was filed first |
 | **CWE** | CWE-798 (Hard-coded Credentials) / CWE-306 (Missing Authentication) / CWE-284 (Improper Access Control) |
 | **OWASP** | A07:2021 — Identification and Authentication Failures · A05:2021 — Security Misconfiguration |
 | **VRT** | Broken Access Control → Privilege Escalation |
 | **Surface** | Open-source Kafka/cluster admin UI (Aiven-Open/klaw) |
-| **Status** | Submitted Bugcrowd 2026-09-27 — closed as **Duplicate** of an earlier `/resetMemoryCache` report (2025-09-23) |
+| **Status** | Submitted Bugcrowd 2026-09-27 — finding demonstrated; closed as **Duplicate** because an earlier `/resetMemoryCache` report (2025-09-23) had priority |
 
 ---
 

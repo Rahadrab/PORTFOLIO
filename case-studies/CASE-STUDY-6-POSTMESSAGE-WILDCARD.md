@@ -2,11 +2,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Severity** | P2 (High) — but closed as Duplicate |
+| **Severity** | P2 (High) — finding validated; closed as Duplicate because another researcher reported it first |
 | **CWE** | CWE-200 (Exposure of Sensitive Information to Unauthorized Actor) / CWE-359 (Improper Input Validation) |
 | **Impact** | Session token leakage, session hijacking, fraud bypass, automated bot attacks; all customers of the affected product affected |
 | **Surface** | JavaScript enforcement iframe using `postMessage()` with wildcard origin `"*"` |
-| **Status** | Packaged — triaged and closed as Duplicate of [REDACTED-REPORT-ID] (originally reported 2025-12-29); finding validated but duplicate; analyst was courteous and included findings excerpt for transparency |
+| **Status** | Packaged — finding validated; closed as Duplicate of [REDACTED-REPORT-ID] (reported 2025-12-29 by another researcher); analyst included a findings excerpt for transparency |
 
 ---
 
@@ -87,7 +87,7 @@ Analyzed the `postMessage` payload structure to confirm session tokens (`session
 - **Automated bot attacks become possible** — barrier for bot-driven fraud lowered
 - **GDPR/CCPA compliance risks** from session tracking without proper origin validation
 
-**CVSS:** 5.3 (Medium) — Information exposure with demonstrable impact, but closed as Duplicate of [REDACTED-REPORT-ID] (reported 2025-12-29).
+**CVSS:** 5.3 (Medium) — Information exposure with demonstrable impact; closed as Duplicate because another researcher had reported it first ([REDACTED-REPORT-ID], 2025-12-29).
 
 **Analyst note:** [REDACTED-ANALYST] (2026-03-19): "Thank you for your report! I appreciate the time you invested in researching this issue and submitting it to us. Unfortunately, this was submitted previously by another researcher." Excerpt from original report included for transparency.
 
@@ -102,13 +102,13 @@ Analyzed the `postMessage` payload structure to confirm session tokens (`session
 - **Security headers:** Add `Content-Security-Policy` restrictions related to iframe embedding
 - **Monitor for exposure:** Set up alerts for `postMessage` events received from unexpected origins
 
-**Note:** Finding was validated as a real vulnerability but closed as Duplicate of [REDACTED-REPORT-ID] (originally reported 2025-12-29 by another researcher). The analyst was courteous and included an excerpt from the original report for transparency: "All the best for your next find! Look forward to your next awesome bug report!"
+**Note:** The finding was validated as a real vulnerability but closed as Duplicate because another researcher had reported it first ([REDACTED-REPORT-ID], 2025-12-29). The analyst included an excerpt from the original report for transparency: "All the best for your next find! Look forward to your next awesome bug report!"
 
 ---
 
 ## Triage Response & Recommendation
 
-**Triage Outcome:** DUPLICATE — closed as duplicate of a prior report (originally submitted 2025-12-29 by another researcher). Finding validated as a real vulnerability.
+**Triage Outcome:** Finding validated as a real vulnerability; closed as Duplicate because another researcher had reported it first (2025-12-29).
 
 **Analyst Recommendation:** "Thank you for your report! I appreciate the time you invested in researching this issue and submitting it to us. Unfortunately, this was submitted previously by another researcher. All the best for your next find! Look forward to your next awesome bug report!" The analyst was courteous, included an excerpt from the original report for transparency, and explicitly expressed interest in future submissions.
 
@@ -123,4 +123,3 @@ iframe source download scripts, `grep` pattern analysis for `postMessage` identi
 ---
 
 *Sanitized: target product name and iframe URL removed. Full technical report available on request under NDA. Report submitted to [REDACTED-REPORT-ID], closed as Duplicate of [REDACTED-REPORT-ID] by analyst [REDACTED-ANALYST] on 2026-03-19. Analyst included findings excerpt for transparency.*
-
