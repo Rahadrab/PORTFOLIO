@@ -2,9 +2,11 @@
 
 **CEH — Arena Web Security (Verified: [A52W25045098](https://admission.arenawebsecurity.net/)) | 2+ Years Bug Bounty | Intigriti & Bugcrowd | 100% Remote**
 
+**Recognition:** Bugcrowd Hall of Fame — see the [public researcher profile](https://bugcrowd.com/h/rahat_rab).
+
 ---
 
-## Verified Findings
+## Selected Research
 
 | Severity | Finding | Class |
 |----------|---------|-------|
@@ -19,7 +21,6 @@
 | **P2** | WordPress REST API Public Exposure | CWE-200 / CWE-284 |
 | **P2** | postMessage Wildcard Origin → Session Token Leak | CWE-201 / CWE-942 |
 | **P2** | Stored XSS via Calculator API → Admin ATO | CWE-79 / CWE-352 |
-| **P2** | Drupal Installer + JSON:API Enumeration | CWE-200 / CWE-284 |
 | **P2** | Unauthenticated Username Oracle via Self-Registration | CWE-200 / CWE-204 |
 | **P2** | Cross-Tenant User-Record Creation via Request-Body `tenantId` | CWE-639 / CWE-284 |
 
@@ -117,9 +118,6 @@ Unauthenticated `/wp-json/` endpoint exposure on production subdomain. **Triage:
 ### [Case Study 6 — postMessage Wildcard Origin](case-studies/CASE-STUDY-6-POSTMESSAGE-WILDCARD.md)
 Enforcement iframe uses `postMessage()` with wildcard origin (`*`), exposing session tokens to any embedding website. 8 calls identified, all leak `sessionToken:e.token`. **Triage:** Finding validated; closed as Duplicate because another researcher had reported it first. The analyst was courteous: "appreciate the time you invested... look forward to your next awesome bug report."
 
-### [Case Study 7 — Drupal + JSON:API Enumeration](case-studies/CASE-STUDY-7-DRUPAL-JSON-ENUMERATION.md)
-VDP — Drupal Installer Exposure (P3→P2) + JSON:API User Enumeration. **Triage:** RESOLVED — analyst said "Welcome to the program! Thanks for this finding — the team was able to restrict the leaked information." Severity upgraded P3→P2 during triage.
-
 ### [Case Study 8 — Stored XSS via Calculator API → Admin ATO](case-studies/CASE-STUDY-8-STORED-XSS-CALCULATOR-API.md)
 P2 Critical (CVSS ~9.8). Stored XSS in calculator API endpoint persisted in database, executed on admin pages, enabling full admin account takeover. What I keep from this one: my proof needed admin-panel access I wouldn’t force — ethics stays higher than any single report, so I stopped at the line and demoed safely instead (video PoC, 27 files, local sample). It still closed, and support replies left me waiting days between templates — that waiting is what made me stop working HackerOne. The mediation gate (3 valids in 3 months) can be impossible new. So to new researchers: don’t rage past lines that can hurt you — document clean, stack valids, walk standing.
 
@@ -156,7 +154,7 @@ The endpoint *is* permission-gated, so this is not an unauthenticated flaw — i
 | Red Team / Offensive | Case Study 1 (ATO), Case Study 8 (Stored XSS → Admin ATO), Case Study 9 (Credential Leakage & Persistent MITM), Case Study 12 (authorization gate that never denies) |
 | AppSec / Source Review | Case Study 9 (JWT exfil + persist), Case Study 10 (permitAll + hardcoded key, cross-tenant), Case Study 11 (SSRF sink + self-verification), Case Study 12 (logic flaw in the authz gate), Case Study 14 (cross-tenant write) |
 | AI Security | [Local LLM prompt-injection hardening](case-studies/GARAK-LOCAL-HARDENING.md) |
-| Web AppSec / Pentest | Case Study 2 (Search Injection), Case Study 7 (Drupal/JSON:API), Case Study 11 (SSRF), Case Study 13 (unauthenticated username oracle) |
+| Web AppSec / Pentest | Case Study 2 (Search Injection), Case Study 11 (SSRF), Case Study 13 (unauthenticated username oracle) |
 
 **Rule:** CV + max 2 redacted PDFs, matched to role. Never attach raw evidence or program-named files.
 

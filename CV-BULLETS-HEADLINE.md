@@ -1,6 +1,6 @@
 # CV Bullets + LinkedIn Headline — Evidence-Backed Update (Sep 2026)
 
-Built from the real WORK archive assessment (`SKILLS-ASSESSMENT.md`). Every line is backed by a packaged finding with PoC. **Keep the "2+ years bug bounty, accepted P2–Critical, verifiable on profiles" claim identical everywhere — never blur bounty into employment.**
+Built from portfolio case studies. State each finding's actual review status; do not describe duplicate, informative, out-of-scope, or unsubmitted work as accepted. Never blur bug-bounty research into employment.
 
 ---
 
@@ -17,13 +17,13 @@ Built from the real WORK archive assessment (`SKILLS-ASSESSMENT.md`). Every line
 
 ## 2. LinkedIn headline v3 (evidence-backed, fits 220 chars)
 
-> Offensive Security Researcher (CEH — [A52W25045098](https://admission.arenawebsecurity.net/)) | Auth/SAML/SSO, WAF Bypass, ACL Escalation | Accepted P2–Critical on Intigriti · Bugcrowd | AI-Directed PoC Automation | 100% Remote · Any Timezone
+> Offensive Security Researcher (CEH — [A52W25045098](https://admission.arenawebsecurity.net/)) | Auth/SAML/SSO, WAF Bypass, ACL Escalation | Bugcrowd Hall of Fame | Evidence-Based Research | UTC+6
 
 *(v3 replaces v2: leads with the now file-backed skill areas instead of the JWT/XSS names.)*
 
 ## 3. LinkedIn About (top 3 lines)
 
-> Offensive security researcher (CEH) with 2+ years of verified bug bounty work on Intigriti and Bugcrowd — accepted P2–Critical findings including an account-takeover chain via missing re-authentication, a WAF-bypass + ACL-escalation chain exposing internal health data, and a verified CVE exploitation on an EOL platform. Every finding ships as a structured evidence package with remediation. **100% remote; timezone-flexible (UTC+6) — can match US/EU/APAC hours.**
+> Offensive security researcher (CEH) with 2+ years of vulnerability research across Intigriti and Bugcrowd, recognized in Bugcrowd's Hall of Fame. My work covers authentication, access control, SAML/SSO, and source review; I document evidence, impact, remediation, and the actual review outcome for each finding. **Based in Bangladesh (UTC+6); available for remote work across US/EU/APAC hours.**
 
 ## 4. PoC attachment map (updated — match to role)
 
