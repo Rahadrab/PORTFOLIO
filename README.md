@@ -5,7 +5,7 @@ CEH certified · Bugcrowd Hall of Fame · 2+ years vulnerability research · Ban
 
 I test authentication, APIs, access control, and identity systems using manual web testing and Java/Python source review. I document reproducible evidence, qualify impact against what was actually demonstrated, and correct my own claims when re-verification requires it.
 
-[Portfolio site](https://rahadrab.github.io/PORTFOLIO/) · [Case studies](case-studies/) · [LinkedIn](https://www.linkedin.com/in/rahadrab/) · [Bugcrowd](https://bugcrowd.com/h/rahat_rab) · [Intigriti](https://app.intigriti.com/researcher/profile/rahadrab/)
+[Portfolio site](https://rahadrab.github.io/PORTFOLIO/) · [Case studies](case-studies/) · [LinkedIn](https://www.linkedin.com/in/rahadrab/) · [Bugcrowd](https://bugcrowd.com/h/rahad_rab) · [Intigriti](https://app.intigriti.com/researcher/profile/rahadrab/)
 
 ## Featured findings
 
@@ -54,6 +54,6 @@ Authentication and identity (OIDC, OAuth, SAML) · Web and API security · Autho
 
 - [LinkedIn](https://www.linkedin.com/in/rahadrab/)
 - [Intigriti](https://app.intigriti.com/researcher/profile/rahadrab/)
-- [Bugcrowd Hall of Fame and researcher profile](https://bugcrowd.com/h/rahat_rab)
+- [Bugcrowd Hall of Fame and researcher profile](https://bugcrowd.com/h/rahad_rab)
 - [HackerOne](https://hackerone.com/rahadrab)
 - [Portfolio website](https://rahadrab.github.io/PORTFOLIO/)
