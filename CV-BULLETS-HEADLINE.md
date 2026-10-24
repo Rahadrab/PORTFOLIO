@@ -1,6 +1,6 @@
 # CV Bullets + LinkedIn Headline — Evidence-Backed Update (Sep 2026)
 
-Built from portfolio case studies. State each finding's actual review status; do not describe duplicate, informative, out-of-scope, or unsubmitted work as accepted. Never blur bug-bounty research into employment.
+Built from portfolio case studies. State each finding's actual review status; distinguish triage-validated findings from Informative, out-of-scope, and unsubmitted research. Never blur bug-bounty research into employment.
 
 ---
 

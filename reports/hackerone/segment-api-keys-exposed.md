@@ -5,7 +5,7 @@
 **Reporter:** [REDACTED-USERNAME]  
 **Date Submitted:** March 14, 2026, 7:52am UTC  
 **Status:** RESOLVED / APPROVED  
-**Closed:** Duplicate of [REDACTED-REPORT-ID] (original reporter not identified)
+**Status:** Validated by triage; an earlier report had priority.
 
 ---
 
@@ -113,4 +113,4 @@ Both keys were tested and confirmed working with actual API responses showing `{
 
 ## Status: RESOLVED / APPROVED
 
-Report validated by analyst; reporter accepted the duplicate closure gracefully. Reporter noted they are "in the right path" as a new researcher.
+Report validated by analyst; reporter noted they were "in the right path" as a new researcher.

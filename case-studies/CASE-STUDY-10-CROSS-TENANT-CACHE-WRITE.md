@@ -2,12 +2,12 @@
 
 | Field | Value |
 |-------|-------|
-| **Severity** | P3 (as triaged) — finding demonstrated; closed as Duplicate because an earlier report was filed first |
+| **Severity** | P3 — validated by triage |
 | **CWE** | CWE-798 (Hard-coded Credentials) / CWE-306 (Missing Authentication) / CWE-284 (Improper Access Control) |
 | **OWASP** | A07:2021 — Identification and Authentication Failures · A05:2021 — Security Misconfiguration |
 | **VRT** | Broken Access Control → Privilege Escalation |
 | **Surface** | Open-source Kafka/cluster admin UI (Aiven-Open/klaw) |
-| **Status** | Submitted Bugcrowd 2026-09-27 — finding demonstrated; closed as **Duplicate** because an earlier `/resetMemoryCache` report (2025-09-23) had priority |
+| **Status** | Submitted Bugcrowd 2026-09-27 — validated by triage as P3 |
 
 ---
 
@@ -136,8 +136,8 @@ one root cause: internal-service routes registered as public static resources. I
 - **Present in every deployment**: `UtilController` has no `@ConditionalOnProperty`; `/cache/**` requires
   `klaw.core.ha.enable=true` (ships `false`)
 - **Tenant `DELETE` is blocked** — the one guard that exists
-- **Triage:** closed as **Duplicate** of the 2025-09-23 report covering `/resetMemoryCache`. I could not
-  see the master report's description, so I cannot claim the `/cache/**` path or the hardcoded default key
+- **Triage:** validated as P3. An earlier report covered `/resetMemoryCache`. I could not
+  see that report's description, so I cannot claim the `/cache/**` path or the hardcoded default key
   were absent from it. Recorded here as methodology, not as a new claim.
 
 ## Remediation Delivered

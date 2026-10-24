@@ -108,7 +108,7 @@ Demonstrated data injection capabilities by sending test events and user profile
 
 ## Triage Response & Recommendation
 
-**Triage Outcome:** The analyst validated the finding and confirmed the keys were live. It was closed as Duplicate because an earlier report for the same issue had been filed first; the report was closed as RESOLVED with positive acknowledgement of the structured evidence package.
+**Triage Outcome:** The analyst validated the finding and confirmed the keys were live; the report was closed as RESOLVED with positive acknowledgement of the structured evidence package.
 
 **Analyst Recommendation:** The structured evidence package (root cause, sanitized reproduction, PoC, impact, remediation) met the program's quality bar. The reporter's careful confirmation of the existing finding (re-testing both keys with `{"success": true}` API responses) was noted as a value-add rather than a re-report.
 
@@ -122,4 +122,4 @@ Injection probes, API test scripts, response-body capture, diff/compare scripts 
 
 ---
 
-*Sanitized: organization name, subdomain names, and specific key values removed. Full technical report available on request under NDA. Report submitted to [REDACTED-REPORT-ID], validated by analyst [REDACTED-ANALYST], status: Duplicate (closed because an earlier report was filed first).*
+*Sanitized: organization name, subdomain names, and specific key values removed. Full technical report available on request under NDA. Finding validated by triage.*

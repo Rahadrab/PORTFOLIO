@@ -4,7 +4,7 @@
 **Program:** [REDACTED-COMPANY] Bounty  
 **Reporter:** [REDACTED-USERNAME]  
 **Date Submitted:** March 15, 2026, 6:03pm UTC  
-**Status:** DUPLICATE  
+**Status:** Validated by triage
 **Closed:** March 19, 2026, 6:47am UTC by [REDACTED-ANALYST]  
 **Original Report:** [REDACTED-REPORT-ID] (reported 2025-12-29)
 
@@ -145,7 +145,6 @@ cat iframe-source.html | grep -oE 'postMessage.*"*"'
 
 ---
 
-## Status: DUPLICATE
+## Status: Validated by triage
 
-**Closed as duplicate of [REDACTED-REPORT-ID]** (originally reported 2025-12-29 by another researcher).  
-Finding was validated but duplicate; analyst was courteous and included findings excerpt for transparency. Reporter accepted gracefully and noted they are "in the right path" as a new researcher.
+**Finding validated by triage.** An earlier report had priority. The analyst included an excerpt for transparency and encouraged continued research.

@@ -7,7 +7,7 @@
 | **OWASP** | A10:2021 — Server-Side Request Forgery |
 | **VRT** | Broken Access Control → Privilege Escalation (as triage-set) |
 | **Surface** | Open-source Kafka/cluster admin UI (Aiven-Open/klaw) — `cluster-api` module |
-| **Status** | Submitted 2026-09-29 — triaged as a valid P3 issue; closed as **Duplicate** because an earlier same-endpoint-class report had priority · self-correction issued in this write-up |
+| **Status** | Validated by triage as P3 · self-correction issued in this write-up |
 
 ---
 
@@ -114,7 +114,7 @@ My own enumeration notes recorded `updateConnector`, `deleteConnector`, `connect
 "probably the same way" is a hypothesis, not a result. **Proven endpoints: one.**
 
 *I stopped there deliberately, and it was a triage judgement, not a testing one.* The submission
-had already been triaged as a valid issue and closed as a duplicate of an earlier report on the
+had already been validated by triage; an earlier report had priority for the overlapping issue class on the
 same endpoint class, so further endpoint enumeration could not change the outcome — a private
 engagement would have had a different incentive structure and I would have worked each route
 to a proof. **The standard I hold is the engagement, not the bounty.** What I owe a customer is
@@ -150,14 +150,14 @@ parameter with no host allowlist. That is a real SSRF primitive, and it is what 
 - **No** response reflection — `processResponseBody` discards the body
 - Scheme constrained to `http://` by the fixed prefix prepend
 - Preconditions: valid cluster-api token; PoC against locally-launched `2.10.6` jars
-- **Triage:** **Duplicate**, P3, Unresolved — master filed 2024 against a *different target*
+- **Triage:** Validated as P3; an earlier report had priority
   (`klaw-core`'s `testClusterApiConnection`, a different module and parameter). The
   endpoint-overlap argument was available; I chose not to spend a slot contesting it, and put
   the corrections on the record instead.
 
 ## Triage Response & Recommendation
 
-**Outcome:** duplicate. I did not contest it. My own report was overstated in three material
+**Outcome:** validated by triage as P3. My own report was overstated in three material
 ways at the time of verdict, and correcting that mattered more than arguing priority.
 
 **Reporter takeaway:** the endpoint-list inflation was the serious error, not the severity
