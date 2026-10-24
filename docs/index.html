@@ -119,92 +119,47 @@
       <span class="badge blue">Bugcrowd</span>
       <span class="badge blue">Intigriti</span>
       <span class="badge">Bugcrowd Hall of Fame</span>
-      <span class="badge warn">100% Remote</span>
+      <span class="badge warn">Remote · UTC+6</span>
     </div>
+    <p><a href="https://github.com/Rahadrab/PORTFOLIO#all-other-findings-and-research">All findings and case studies</a> · <a href="https://www.linkedin.com/in/rahadrab/">LinkedIn</a> · <a href="https://github.com/Rahadrab/PORTFOLIO">GitHub</a></p>
   </div>
 
   <div class="stats">
+    <div class="stat">
+      <div class="number">2+</div>
+      <div class="label">Years Research</div>
+    </div>
     <div class="stat">
       <div class="number">14</div>
       <div class="label">Case Studies</div>
     </div>
     <div class="stat">
-      <div class="number">7</div>
-      <div class="label">Burp Extensions</div>
-    </div>
-    <div class="stat">
-      <div class="number">500+</div>
-      <div class="label">Lines Automation</div>
-    </div>
-    <div class="stat">
-      <div class="number">2yr+</div>
-      <div class="label">Bug Bounty</div>
+      <div class="number">3</div>
+      <div class="label">Research Platforms</div>
     </div>
   </div>
 
   <div class="section">
-    <h2>🔍 Selected Research</h2>
+    <h2>⭐ Featured Findings</h2>
     <table>
-      <tr><th>Severity (as assessed)</th><th>Finding</th><th>Class</th></tr>
-      <tr><td class="severity-high">High</td><td>Account Takeover via Missing Re-Authentication (OIDC + GraphQL)</td><td>CWE-306 / CWE-620</td></tr>
-      <tr><td class="severity-p2">P2</td><td>Search-Query Injection → ACL Bypass + Health Data Exposure</td><td>CWE-200 / CWE-284</td></tr>
-      <tr><td class="severity-p2">P2</td><td>WAF Bypass + reCAPTCHA v3 Bypass (4-route cross-product)</td><td>WAF Evasion</td></tr>
-      <tr><td class="severity-clean">Clean</td><td>SAML 2.0 Audit across 5 enterprise IdPs</td><td>SAML/SSO</td></tr>
-      <tr><td class="severity-p2">P2</td><td>Stored XSS via Calculator API → Admin ATO</td><td>CWE-79 / CWE-352</td></tr>
-      <tr><td class="severity-p2">P2</td><td>postMessage Wildcard Origin → Session Token Leak</td><td>CWE-201 / CWE-942</td></tr>
-      <tr><td class="severity-p3">P3</td><td>CVE-2021-43264 — Unauthenticated Path Traversal</td><td>CWE-22</td></tr>
+      <tr><th>Finding</th><th>Review outcome</th></tr>
+      <tr><td>Account takeover via missing re-authentication across OIDC and GraphQL</td><td>Researcher-assessed High; packaged</td></tr>
+      <tr><td>Cluster-API JWT disclosure and persistent MITM</td><td>Triaged P5 / Informational; Duplicate</td></tr>
+      <tr><td>Blind SSRF via Kafka Connect environment parameter</td><td>Triaged valid P3; Duplicate; impact corrected</td></tr>
+      <tr><td>Cross-tenant cache mutation through authorization defaults</td><td>Triaged valid; Duplicate</td></tr>
+      <tr><td>Stored XSS behavior in an admin-rendered workflow</td><td>Triaged Informative</td></tr>
     </table>
-    <p>Severity labels are researcher assessments unless a platform outcome is explicitly stated.</p>
+    <p>Severity is researcher-assessed unless a platform outcome is stated. <a href="https://github.com/Rahadrab/PORTFOLIO#all-other-findings-and-research">See the complete findings list and all case studies.</a></p>
   </div>
 
   <div class="section">
-    <h2>🛠️ Burp Suite Extensions (Active)</h2>
-    <div class="tool-grid">
-      <div class="tool-card"><h3>Param Miner</h3><p>Hidden parameter discovery, cache poisoning</p><span class="status">● Active</span></div>
-      <div class="tool-card"><h3>Active Scan++</h3><p>50+ enhanced checks beyond default Burp</p><span class="status">● Active</span></div>
-      <div class="tool-card"><h3>TLS Fingerprint Bypasser</h3><p>Evasion: Cloudflare, Akamai, AWS WAF</p><span class="status">● Active</span></div>
-      <div class="tool-card"><h3>CSRF Scanner</h3><p>Passive CSRF detection & token analysis</p><span class="status">● Active</span></div>
-      <div class="tool-card"><h3>JOSEPH</h3><p>JWT/JOSE pentesting — algorithm confusion</p><span class="status">● Active</span></div>
-      <div class="tool-card"><h3>WAF Bypass</h3><p>Header injection for WAF evasion</p><span class="status">● Active</span></div>
-      <div class="tool-card"><h3>Burp MCP</h3><p>AI-assisted analysis & automation</p><span class="status">● Active</span></div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>🧪 Red Team Toolkit</h2>
-    <table>
-      <tr><th>Tool</th><th>Version</th><th>Use Case</th><th>Status</th></tr>
-      <tr><td>Metasploit (msfconsole)</td><td>6.x</td><td>Exploitation, post-exploitation, C2</td><td>Active</td></tr>
-      <tr><td>BeEF</td><td>0.6.0.0</td><td>Browser exploitation, hook injection</td><td>Active</td></tr>
-      <tr><td>Garak</td><td>0.17.0</td><td>LLM vulnerability scanning (100+ probes)</td><td>Active</td></tr>
-    </table>
-  </div>
-
-  <div class="section">
-    <h2>🤖 Automation Scripts</h2>
-    <table>
-      <tr><th>Script</th><th>Lines</th><th>Purpose</th></tr>
-      <tr><td>auto-workflow.sh</td><td>500+</td><td>Subdomain enum → port scan → service detection → vuln scan</td></tr>
-      <tr><td>auto-dork.sh</td><td>1000+</td><td>Multi-engine dorking (Google/Bing/GitHub/FTS)</td></tr>
-      <tr><td>lucene_injection_poc.py</td><td>—</td><td>Search injection → ACL bypass</td></tr>
-      <tr><td>csrf_poc.py</td><td>—</td><td>CSRF chain development</td></tr>
-      <tr><td>graphql_control.py</td><td>—</td><td>GraphQL authorization testing</td></tr>
-      <tr><td>turnstile-bypass.py</td><td>—</td><td>Cloudflare Turnstile weakness research</td></tr>
-      <tr><td>jwt_none_runner.py</td><td>—</td><td>JWT algorithm confusion testing</td></tr>
-    </table>
-    <p>All scripts: <a href="https://github.com/Rahadrab/SEC-SCRIPTS">github.com/Rahadrab/SEC-SCRIPTS</a></p>
-  </div>
-
-  <div class="section">
-    <h2>📊 Skills</h2>
+    <h2>🔐 Security Focus</h2>
     <table>
       <tr><th>Category</th><th>Details</th></tr>
-      <tr><td><b>Auth & Identity</b></td><td>OIDC, SAML 2.0, OAuth flows, session management, CSRF chains</td></tr>
-      <tr><td><b>Web AppSec</b></td><td>OWASP Top 10, API security, business logic, access control</td></tr>
-      <tr><td><b>WAF Evasion</b></td><td>Query-operator injection, method switching, Host-header routing, TLS fingerprint</td></tr>
-      <tr><td><b>Red Team</b></td><td>Metasploit, BeEF, Garak, Frida/Objection, MITRE ATT&CK</td></tr>
-      <tr><td><b>AI Security</b></td><td>LLM vulnerability scanning, prompt injection, Garak 0.17.0</td></tr>
-      <tr><td><b>Reporting</b></td><td>CWE/OWASP mapping, GDPR impact framing, structured evidence packages</td></tr>
+      <tr><td><b>Auth & Identity</b></td><td>OIDC, OAuth, SAML, sessions, account recovery</td></tr>
+      <tr><td><b>Application Security</b></td><td>Web/API testing, business logic, access control, tenant isolation</td></tr>
+      <tr><td><b>Source Review</b></td><td>Java/Python, Spring Security, authorization paths, insecure defaults</td></tr>
+      <tr><td><b>Reporting</b></td><td>Reproducible evidence, impact validation, remediation guidance</td></tr>
     </table>
   </div>
 
