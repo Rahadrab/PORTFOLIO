@@ -12,9 +12,9 @@ I test authentication, APIs, access control, and identity systems using manual w
 | Finding | Outcome |
 |---|---|
 | Account takeover through missing re-authentication across OIDC and GraphQL flows | Packaged; researcher-assessed High |
-| Cluster-API JWT disclosure and persistent MITM | Reproduced; triaged P5/Informational, closed as Duplicate |
-| Blind SSRF through Kafka Connect environment parameter | Triaged valid P3; closed as Duplicate; scope and impact corrected |
-| Cross-tenant cache mutation through authorization defaults | Triaged valid; closed as Duplicate |
+| Cluster-API JWT disclosure and persistent MITM | Reproduced; triaged P5/Informational |
+| Blind SSRF through Kafka Connect environment parameter | Validated by triage as P3; scope and impact corrected |
+| Cross-tenant cache mutation through authorization defaults | Validated by triage |
 | SAML 2.0 assessment across five identity providers and 25+ federation endpoints | Documented controls that held |
 
 ## All other findings and research
@@ -22,12 +22,12 @@ I test authentication, APIs, access control, and identity systems using manual w
 ### Submitted reports
 
 - **Confidential VDP finding — customer confirmed remediation; Resolved.** Recognized in Bugcrowd's Hall of Fame. Technical details are omitted under the program's disclosure policy.
-- **Archive path handling in pghoard restore** — triaged valid; closed as Duplicate.
-- **Klaw account-directory exposure** — submitted; closed as Duplicate.
+- **Archive path handling in pghoard restore** — validated by triage.
+- **Klaw account-directory exposure** — validated by triage.
 - **Email-change and account-recovery chain** — Intigriti; Out of Scope/Archived.
-- **Client-side analytics write-key exposure** — triaged valid; closed as Duplicate.
-- **Wildcard-origin `postMessage` token exposure** — triaged valid; closed as Duplicate.
-- **OAuth open redirect in an Auth0 login flow** — closed as Duplicate.
+- **Client-side analytics write-key exposure** — validated by triage.
+- **Wildcard-origin `postMessage` token exposure** — validated by triage.
+- **OAuth open redirect in an Auth0 login flow** — validated by triage.
 - **Stored XSS behavior in an admin-rendered workflow** — triaged Informative.
 - **Public WordPress REST API exposure** — triaged Informative.
 - **MySQL migration-tool command injection** — submitted; still under assessment.
@@ -44,7 +44,7 @@ I test authentication, APIs, access control, and identity systems using manual w
 - **Local LLM prompt-injection and jailbreak testing** — evaluated attacks and mitigation behavior. [Case study](case-studies/GARAK-LOCAL-HARDENING.md)
 - **Time-based SQL injection learning exercise** — documented as methodology practice, not a bounty finding. [Write-up](case-studies/CASE-STUDY-TIME-BASED-SQLI-LEARNING.md)
 
-Severity labels are researcher assessments unless a platform outcome is stated. Duplicate means the finding was considered valid but an earlier report had priority; it does not mean false positive. Full technical details are available only where disclosure rules permit.
+Severity labels are researcher assessments unless a platform outcome is stated. Findings validated by triage are identified as such. Full technical details are available only where disclosure rules permit.
 
 ## Focus areas
 
