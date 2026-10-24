@@ -8,7 +8,7 @@
 
 ## Selected Research
 
-| Severity | Finding | Class |
+| Severity (as assessed) | Finding | Class |
 |----------|---------|-------|
 | **High** | Account Takeover via Missing Re-Authentication (OIDC + GraphQL) | CWE-306 / CWE-620 |
 | **High** | Credential Leakage & Persistent MITM — Cluster-API JWT Exfil (CVSS 8.1) | CWE-522 / CWE-200 |
@@ -24,7 +24,7 @@
 | **P2** | Unauthenticated Username Oracle via Self-Registration | CWE-200 / CWE-204 |
 | **P2** | Cross-Tenant User-Record Creation via Request-Body `tenantId` | CWE-639 / CWE-284 |
 
-> All findings delivered as structured evidence packages: root cause, sanitized reproduction, PoC, impact, remediation. Full technical reports available on request under NDA. Bug bounty reports available in [`reports/`](reports/) directory.
+> Severity labels are researcher assessments unless a platform outcome is stated. Selected case studies document reproduction, evidence, impact, and remediation; submission and triage outcomes are identified individually.
 
 > **Bug bounty triage note:** A **Duplicate** means the finding was valid, but another researcher had reported it first, so it was not eligible for a separate reward. It is a first-report outcome, not a false-positive verdict.
 
