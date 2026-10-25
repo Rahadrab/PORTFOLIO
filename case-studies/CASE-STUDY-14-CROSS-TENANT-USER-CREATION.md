@@ -1,4 +1,4 @@
-# Case Study 14 — Cross-Tenant User Creation via Request-Body `tenantId` (`addNewUser`)
+# Case Study 14 — Cross-Tenant User Creation: Triage Denial and Sister-Site Scope Lesson
 
 | Field | Value |
 |-------|-------|
@@ -124,6 +124,10 @@ The authorization block that *does* run (`svc:574-587`) reads two different scop
 ### Where my own earlier write-up overreached
 
 My local triage note for this defect asserted *tenant takeover* and *access all data in the target tenant*, and stated flatly that the attacker "can now authenticate as `backdoor_admin` in Tenant 2". The source does not support those claims: the guard at `:654-663` exists specifically to stop that, and I have no execution evidence for the login step. The claim I stand behind is the narrower one — **cross-tenant user-record creation** — with downstream consequences reasoned from source and flagged as such.
+
+### Scope and reporting lesson
+
+The report concerned an asset that was in scope. I also included connections to sister sites; triage denied the report as a “trap.” My takeaway is to keep evidence focused on the in-scope asset and include sister-site context only when it is necessary to establish impact and the program scope clearly supports it. I believe the extra context gave triage another basis to reject a potentially high-value report. That is my interpretation of the outcome, not evidence of triage’s motive.
 
 ## Novelty
 
