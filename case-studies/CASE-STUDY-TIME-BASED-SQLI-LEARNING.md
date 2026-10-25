@@ -1,8 +1,8 @@
-# Time-Based Blind SQLi Research — Methodology, False Positive & Integrity
+# Time-Based Blind SQLi Report — False Positive & Network-Stability Lesson
 
-**Status:** Closed as *Not Applicable* (false positive) — [REDACTED-COMPANY] — Jan 2026  
+**Status:** Submitted; triage closed it as *Not Applicable* (false positive) — Jan 2026
 **VRT:** Server-Side Injection > SQL Injection (P1 claimed)  
-**Result:** Demonstrated ability to hunt time-based SQLi + owned up to VPN-induced false positive, triage positive feedback.
+**Result:** An early-career report where VPN instability created an apparent timing signal. Triage reproduced no delay; I acknowledged the false positive and learned to validate timing findings over a stable network.
 
 ## What This Shows (for hiring managers)
 
@@ -54,8 +54,8 @@ Shows **rigour + integrity** — hiring signal over a bounty.
 
 ## Portfolio Takeaway
 
-- **Skill:** Time-based SQLi hunting (MSSQL `WAITFOR DELAY`, enumeration, raw HTTP)
-- **Integrity:** Immediate false-positive admission, lesson documented
-- **Triage:** Concise, reproducible, raw request + curl loops — even when wrong, triage thanked effort
+- **Early-career lesson:** Network stability matters when testing timing-based behavior; VPN jitter can look like a delay.
+- **Integrity:** I acknowledged the false positive after reproducing the test without the VPN.
+- **Triage:** The report was reviewed and closed as a false positive; the triager thanked me for the effort.
 
 *Full evidence package (screenshots, sqli.txt, tablenames.png) kept private under NDA — available for interview demo.*

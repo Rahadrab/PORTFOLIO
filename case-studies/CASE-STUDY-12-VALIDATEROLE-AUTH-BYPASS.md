@@ -2,12 +2,12 @@
 
 | Field | Value |
 |-------|-------|
-| **Severity** | **CRITICAL (9.8) as analysed** — never triaged; no triager set this number, and it is my own analysis rating, not a verdict |
+| **Severity** | **CRITICAL (9.8) as analysed** — my own assessment; not a triage severity |
 | **CWE** | CWE-480 (Use of Incorrect Operator) / CWE-863 (Incorrect Authorization) / CWE-287 (Improper Authentication) |
 | **OWASP** | A01:2021 — Broken Access Control · A07:2021 — Identification and Authentication Failures |
-| **VRT** | Broken Access Control → Privilege Escalation (analyst classification — never triaged) |
+| **VRT** | Broken Access Control → Privilege Escalation (analyst classification) |
 | **Surface** | Open-source Kafka/cluster admin UI (Aiven-Open/klaw) — `core` module, `JwtTokenUtilService` |
-| **Status** | **Confirmed by source analysis at the upstream release** (tag `v2.10.6`, commit `631b680`) — **not submitted to any program**; never triaged, no bounty, no dispute, no outcome |
+| **Status** | **Submitted and reviewed by triage.** Source analysis is based on the upstream release (tag `v2.10.6`, commit `631b680`); no live exploit was demonstrated |
 
 ---
 
@@ -139,7 +139,7 @@ produced a false negative for a live test.
 - **The role gate never denies** for a caller with a parseable token and a resolvable subject;
   only two call sites, both `CACHE_ADMIN`, on routes that are themselves `permitAll`
 - **Not a live-proven exploit** — source-based analysis; no rig was run against the upstream build for this write-up
-- **Never submitted to any program** — no report, no triage, no bounty, no dispute, no outcome; nothing adjudicated by anyone but me.
+- **Submitted and reviewed by triage** — the source-level finding was not live-tested against the upstream build for this write-up.
 
 ## Remediation
 

@@ -2,11 +2,11 @@
 
 | Field | Value |
 |-------|-------|
-| **Severity** | MEDIUM (P2) as analysed — never triaged |
+| **Severity** | MEDIUM (P2) as analysed — researcher assessment, not a triage severity |
 | **CWE** | CWE-203 (Observable Discrepancy) / CWE-200 (Exposure of Sensitive Information to an Unauthorized Actor) / CWE-770 (Allocation of Resources Without Limits or Throttling) |
 | **OWASP** | A07:2021 — Identification and Authentication Failures · A04:2021 — Insecure Design |
 | **Surface** | Open-source Kafka/cluster admin UI (Aiven-Open/klaw) — unauthenticated self-registration endpoint |
-| **Status** | Local finding — **never submitted to any platform, never triaged**. Reproduced live against a local instance of the open-source product (2.10.6) |
+| **Status** | **Submitted and reviewed by triage.** Reproduced live against a local instance of the open-source product (2.10.6) |
 
 ---
 
@@ -166,8 +166,7 @@ attached to a registration on approval, or any privilege outcome beyond the obse
 - **Unauthenticated queue creation** — each fresh username writes a `PENDING` row to
   `kwregisterusers` and mails the tenant admin; no rate limiting on the endpoint
 - **Second-order path verified live** — approval turns the pending row into a working account
-- **Never submitted, never triaged** — a self-published analysis of a defect in an open-source
-  product; the severity above is my own assessment
+- **Submitted and reviewed by triage** — the severity above is my own assessment
 
 ## Remediation
 

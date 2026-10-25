@@ -6,7 +6,7 @@
 | **CWE** | CWE-639 (Authorization Bypass Through User-Controlled Key) · CWE-284 (Improper Access Control) |
 | **OWASP** | A01:2021 — Broken Access Control |
 | **Surface** | Open-source Kafka/cluster admin UI (`Aiven-Open/klaw`) — `core` module, `UsersTeamsController` |
-| **Status** | **Not submitted to any program.** Confirmed by source analysis at the upstream release (`v2.10.6`); the same code is still present on upstream `main` as of this write-up |
+| **Status** | **Submitted and reviewed by triage; denied as a “trap.”** The denial was not based on a live test disproving the source-level finding. No live request was made. The same code was present on upstream `main` as of this write-up |
 
 ---
 
@@ -160,7 +160,7 @@ Hardening, in order of value:
 - **Cross-tenant user-record creation confirmed at source level** — `svc:558-568` trusts the request-body `tenantId` with no comparison against the caller's tenant
 - **Endpoint is permission-gated, and the persistence layer adds no tenant validation** — `@PermissionAllowed` on the controller (`ctrl:119-123`), enforced by `PermissionAllowedAspectInterceptor.java:22-31`, plus a caller-scoped `ADD_EDIT_DELETE_USERS` check at `svc:583-587`; but `insertIntoUsers` (`InsertDataJdbc.java:287-296`) validates only global username uniqueness.
 - **One guard exists and is narrower than it looks** — the superadmin check at `svc:654-663` constrains the *role*, not the *tenant*.
-- **Not submitted to any program.** No live proof-of-concept; confirmed by source analysis at the upstream release, and still present on upstream `main` at the time of writing
+- **Submitted and reviewed by triage; denied as a “trap.”** No live proof-of-concept was run, so the denial should not be presented as a failed live reproduction. The source-level behavior was identified at the upstream release and was still present on upstream `main` at the time of writing.
 - **No CVE claimed** — no advisory for this mechanism was found in the upstream advisory list or in OSV/NVD
 
 ---

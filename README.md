@@ -37,12 +37,12 @@ I test authentication, APIs, access control, and identity systems using manual w
 - **Search-query injection and scope differential** — Not Applicable; re-verification confirmed returned content was public. [Case study](case-studies/CASE-STUDY-2-SEARCH-INJECTION-ACL-BYPASS.md)
 - **CVE-2021-43264 path-traversal validation** on an end-of-life platform — researcher-assessed P3. [Case study](case-studies/CASE-STUDY-3-KNOWN-CVE-EOL-TRAVERSAL.md)
 - **WAF and reCAPTCHA v3 bypass testing** across multi-route authentication flows.
-- **Authorization-gate Boolean logic flaw** — source analysis; not submitted or triaged. [Case study](case-studies/CASE-STUDY-12-VALIDATEROLE-AUTH-BYPASS.md)
-- **Unauthenticated username oracle** — reproduced locally; not submitted or triaged. [Case study](case-studies/CASE-STUDY-13-UNAUTH-USER-ENUMERATION.md)
-- **Cross-tenant user-record creation** — source analysis only; no live request; not submitted or triaged. [Case study](case-studies/CASE-STUDY-14-CROSS-TENANT-USER-CREATION.md)
+- **Authorization-gate Boolean logic flaw** — source analysis; submitted and reviewed by triage. [Case study](case-studies/CASE-STUDY-12-VALIDATEROLE-AUTH-BYPASS.md)
+- **Unauthenticated username oracle** — reproduced locally; submitted and reviewed by triage. [Case study](case-studies/CASE-STUDY-13-UNAUTH-USER-ENUMERATION.md)
+- **Cross-tenant user-record creation** — submitted and reviewed by triage; denied as a “trap,” not because a live test disproved the source-level finding. No live request was made. [Case study](case-studies/CASE-STUDY-14-CROSS-TENANT-USER-CREATION.md)
 - **JWT authentication-bypass hypothesis** — self-withdrawn after re-verification showed it was not a vulnerability.
 - **Local LLM prompt-injection and jailbreak testing** — evaluated attacks and mitigation behavior. [Case study](case-studies/GARAK-LOCAL-HARDENING.md)
-- **Time-based SQL injection learning exercise** — documented as methodology practice, not a bounty finding. [Write-up](case-studies/CASE-STUDY-TIME-BASED-SQLI-LEARNING.md)
+- **Time-based SQL injection report** — triage-confirmed false positive caused by unstable VPN timing; an early-career lesson in testing on a stable network. [Write-up](case-studies/CASE-STUDY-TIME-BASED-SQLI-LEARNING.md)
 
 Severity labels are researcher assessments unless a platform outcome is stated. Findings validated by triage are identified as such. Full technical details are available only where disclosure rules permit.
 
