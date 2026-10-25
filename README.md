@@ -30,7 +30,7 @@ I test authentication, APIs, access control, and identity systems using manual w
 - **OAuth open redirect in an Auth0 login flow** — validated by triage.
 - **Stored XSS behavior in an admin-rendered workflow** — triaged Informative.
 - **Public WordPress REST API exposure** — triaged Informative.
-- **MySQL migration-tool command injection** — submitted; still under assessment.
+- **MySQL migration-tool report** — retracted after re-check; triage independently confirmed the input stayed a single argument and no shell command ran, then closed it as Not Applicable. The report also required control of the migration host's source URI, which already implied host-level code execution.
 
 ### Additional case studies and research
 
