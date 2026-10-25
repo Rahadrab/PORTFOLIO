@@ -80,12 +80,6 @@ When an admin user accessed the calculator page or any page rendering calculator
 - `SUPPORT_EMAIL_TO_SEND.txt` (5.7 KB) — Support email draft
 - `REPLY_TO_SUPPORT_CONTRADICTION.txt` (3.2 KB) — Reply to contradiction
 
-**Public Escalation Files (5 files):**
-- `PUBLIC_ESCALATION_PLATFORMS.txt` (11 KB) — All platforms researched
-- `PUBLIC_ESCALATION_LAYOUT.txt` (17 KB) — Step-by-step timeline
-- `PUBLIC_ESCALATION_FULL_PREP.txt` (23 KB) — Complete preparation
-- `PUBLIC_WARNING_PLAN.txt` (20 KB) — Warning plan for new researchers
-- `SCREENSHOT_CHECKLIST.txt` (5.7 KB) — Screenshot verification checklist
 
 **REDACTED-PLATFORM Support:**
 - Support Ticket [REDACTED-TICKET] — Open, 5+ days no response
@@ -106,9 +100,9 @@ When an admin user accessed the calculator page or any page rendering calculator
 
 **Finding:** Validated by technical merits — Stored XSS → Admin ATO chain fully demonstrated with video proof, attack scripts, and 27+ supporting files.
 
-**Triage Issue:** Closure decision impacted by reporter's new-account status on the REDACTED-PLATFORM program. The finding was technically valid but the triage process did not fully account for the reporter's new status on the platform.
+**Triage Issue:** Closure decision impacted by reporter's new-account status on the REDACTED-PLATFORM program. The finding was valid but the triage process did not care as they have account for the reporter's new status on the platform.
 
-**Response:** Reporter prepared extensive public escalation materials, support ticket escalation ([REDACTED-TICKET]), and video evidence (finnal-xss-validation.mp4). Ticket remains open with no response after 5+ days. Precedent cited from Uber, Twitter, and Revive bug bounty escalations.
+**Response:** Support ticket escalation ([REDACTED-TICKET]), and video evidence (finnal-xss-validation.mp4). Ticket remains open with no response after 5+ days. Precedent cited from Uber, Twitter, and Revive bug bounty escalations.
 
 ---
 
@@ -127,9 +121,9 @@ The triage team sent a 4-point message before closing the report. The exact word
 **Why This Is a Wrong Ask:** The triage team **admitted** the endpoint stores XSS payloads, then dismissed the PoC because the reporter "simulated" the admin interface instead of showing the "actual" one. This requires **admin credentials** — something no external researcher should possess. A simulated/lab-recreated admin panel is the standard way to demonstrate XSS without exposing production admin interfaces or having credentials. The HackerOne AI confirmed this violated policy.
 
 ### Message Point 3 (Impossible Evidence Standard)
-> *"Without evidence showing the stored data being rendered unsanitized in the actual admin panel, we cannot confirm this presents a practical security risk."*
+> *"Without evidence showing the stored data being rendered unsanitized in the **actual admin panel**, we cannot confirm this presents a practical security risk."*
 
-**Why This Is a Wrong Ask:** This is the **impossible evidence requirement**. The only way to show "actual admin panel" rendering of stored XSS is to:
+**Why This Is a Wrong Ask:** This is the **impossible evidence requirement**. The only way to show **"actual admin panel"** rendering of stored XSS is to:
 - ❌ Have admin credentials (forbidden for external researchers)
 - ❌ Compromise an admin account (illegal without authorization)
 - ❌ Wait for an admin to load the page and capture the result (impractical + requires social engineering)
@@ -263,6 +257,8 @@ The HackerOne support team itself gave **three different explanations** about me
 - Email 3: *"mediation is available only to researchers with a signal of zero or greater"*
 
 When asked for clarification, the support team contradicted itself again: *"your signal hasn't been calculated yet."* If signal is "zero or greater" and hasn't been calculated, the reporter is eligible — but the mediation button shows as "Unavailable" on the report.
+Their ask was submit 3 valid finds within 3 months (then cant mediate as expritation of closed reports are set to 3 months).
+Finding 1 valid bug is 2-3 months is hard enough. So the researcher never worked in HackerOne since then.
 
 ---
 
@@ -277,7 +273,7 @@ The escalation materials cited precedent from successful public escalations on H
 
 ## Status
 
-Finding validated by technical merit. Support ticket [REDACTED-TICKET] OPEN (5+ days). Public escalation materials prepared. Researcher continuing to escalate through all available channels including public warning platforms.
+Finding validated by technical merit. Support ticket [REDACTED-TICKET] OPEN (5+ days). 
 
 ---
 
