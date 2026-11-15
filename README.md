@@ -12,7 +12,7 @@ I test authentication, APIs, access control, and identity systems using manual w
 | Finding | Outcome |
 |---|---|
 | Account takeover through missing re-authentication across OIDC and GraphQL flows | Packaged; researcher-assessed High |
-| Cluster-API JWT disclosure and persistent MITM | Reproduced; triaged P5/Informational |
+| Cluster-API JWT disclosure and persistent MITM | Researcher-assessed High (CVSS 8.1); reproduced; triaged P5/Informational due to overlap with a prior report. |
 | Blind SSRF through Kafka Connect environment parameter | Validated by triage as P3; scope and impact corrected |
 | Cross-tenant cache mutation through authorization defaults | Validated by triage |
 | SAML 2.0 assessment across five identity providers and 25+ federation endpoints | Documented controls that held |
